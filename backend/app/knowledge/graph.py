@@ -10,8 +10,8 @@ class knowledgeGraph:
         # print(self.graph)
 
     def get_neighbours(self,node:str):
-        print(node,"node in get_neighbours")
-        print("Searching:", repr(node))
-        print("Graph dict:", self.graph)
-        print("Keys:", list(self.graph.keys()))
+        # print(node,"node in get_neighbours")
+        # print("Searching:", repr(node))
+        # print("Graph dict:", self.graph)
+        # print("Keys:", list(self.graph.keys()))
         return self.graph.get(node,[])
