@@ -7,7 +7,7 @@ class knowledgeGraph:
 
     def add_edge(self,source:str,destination:str,relation:str,weight:float):
         heapq.heappush(self.graph[source.lower()],(-weight,destination.lower(),relation))
-        print(self.graph)
+        # print(self.graph)
 
     def get_neighbours(self,node:str):
         print(node,"node in get_neighbours")
