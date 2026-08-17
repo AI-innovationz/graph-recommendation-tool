@@ -37,4 +37,6 @@ class User:
         for p in preference:
             self.preference.append(p)
         print(self)
-        
+
+   
+

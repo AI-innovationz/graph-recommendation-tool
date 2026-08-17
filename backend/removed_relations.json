@@ -1,0 +1,65 @@
+[
+    {
+        "source": "Plasma",
+        "relationship": "contains",
+        "target": "factor",
+        "confidence": 1.0,
+        "context": "Plasma contains clotting factors and proteins and is used to treat patients with liver disease, burns, or clotting disorders."
+    },
+    {
+        "source": "Proper donor screening",
+        "relationship": "reduce",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Proper donor screening, blood testing, compatibility testing, and careful patient monitoring reduce the risk of transfusion complications and improve patient safety."
+    },
+    {
+        "source": "emergency department",
+        "relationship": "treat",
+        "target": "",
+        "confidence": 0.95,
+        "context": "The emergency department treats patients with serious injuries, accidents, heart attacks, strokes, burns, poisoning, and other life-threatening conditions."
+    },
+    {
+        "source": "emergency department",
+        "relationship": "treat",
+        "target": "",
+        "confidence": 0.95,
+        "context": "The emergency department treats patients with serious injuries, accidents, heart attacks, strokes, burns, poisoning, and other life-threatening conditions."
+    },
+    {
+        "source": "Common medical emergency",
+        "relationship": "includes",
+        "target": "",
+        "confidence": 0.95,
+        "context": "Common medical emergencies include heart attacks, strokes, severe bleeding, burns, poisoning, allergic reactions, fractures, and road accidents."
+    },
+    {
+        "source": "Common medical emergency",
+        "relationship": "includes",
+        "target": "",
+        "confidence": 0.95,
+        "context": "Common medical emergencies include heart attacks, strokes, severe bleeding, burns, poisoning, allergic reactions, fractures, and road accidents."
+    },
+    {
+        "source": "Common medical emergency",
+        "relationship": "includes",
+        "target": "",
+        "confidence": 0.95,
+        "context": "Common medical emergencies include heart attacks, strokes, severe bleeding, burns, poisoning, allergic reactions, fractures, and road accidents."
+    },
+    {
+        "source": "doctor",
+        "relationship": "diagnose",
+        "target": "condition",
+        "confidence": 1.0,
+        "context": "Inside the emergency department, doctors rapidly examine the patient, diagnose the condition, order laboratory tests and imaging studies, and begin appropriate treatment."
+    },
+    {
+        "source": "CT scan",
+        "relationship": "identify",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Radiology departments conduct X-rays, CT scans, and MRI scans to identify fractures, internal injuries, and other medical conditions."
+    }
+]

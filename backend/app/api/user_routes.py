@@ -40,7 +40,7 @@ def create_user(user:CreateUserRequest):
 
     print(new_user,"user-------")
     try:
-        user_repo.add(new_user)
+        user_repo.add(new_user,user)
     except Exception as e:
         print(e)
 
@@ -76,6 +76,7 @@ def become_helper(user_id: str,request:BecomeHelperRequest):
 
     user.become_helper()
     user.helper_add_pref(request.preferences)
+    user_repo.update_user(user)
 
     return {
         "message": "Role changed to Helper"

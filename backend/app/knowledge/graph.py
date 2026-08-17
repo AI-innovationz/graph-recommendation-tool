@@ -5,7 +5,7 @@ class knowledgeGraph:
     def __init__(self):
         self.graph = defaultdict(list)
 
-    def add_edge(self,source:str,destination:str,relation:str,weight:float):
+    def add_edge(self,source:str,destination:str,relation:str,weight:float,node_embedding:list):
         heapq.heappush(self.graph[source.lower()],(-weight,destination.lower(),relation))
         # print(self.graph)
 

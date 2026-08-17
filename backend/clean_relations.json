@@ -1,0 +1,9 @@
+[
+    {
+        "source": "Doctors",
+        "relationship": "identify",
+        "target": "diagnose diseases",
+        "confidence": 0.95,
+        "context": "Doctors examine patients, identify symptoms, diagnose diseases, prescribe medicines, and recommend medical procedures."
+    }
+]

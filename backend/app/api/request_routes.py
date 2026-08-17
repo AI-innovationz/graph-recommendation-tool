@@ -1,14 +1,14 @@
 from fastapi import APIRouter
 from app.repositories.request_repository import RequestRepository
-from app.api.user_routes import user_repo
+# from app.api.user_routes import user_repo
 from app.models.request import Request , RequestStatus , RequestType
 from app.models.location import Location
 from app.schemas.request_schema import CreateRequest
 from app.services.matching_services import MatchingService
-
-
+from app.utils.parseRequest import parse_request
+from app.repositories.user_repository import UserRepository
 req_repo = RequestRepository()
-
+user_repo = UserRepository()
 
 router = APIRouter(
     prefix="/requests",
@@ -30,7 +30,7 @@ def get_requests():
 def create_request(req:CreateRequest):
     
     print(req)
-    
+    req.request_type = parse_request(req.request_type,req.description)
     new_req = Request(
         user_id= req.user_id,
         request_type= req.request_type,

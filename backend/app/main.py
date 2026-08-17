@@ -56,6 +56,9 @@
 from fastapi import FastAPI
 from app.api.user_routes import router as user_router 
 from app.api.request_routes import router as req_router
+# from app.knowledge.data_fetch import DataFetch
+
+
 
 
 app = FastAPI(

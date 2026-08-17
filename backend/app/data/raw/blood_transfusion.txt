@@ -1,0 +1,15 @@
+Blood transfusion is a medical procedure in which donated blood or blood components are transferred into a patient's bloodstream to replace lost blood or treat certain medical conditions. Doctors recommend blood transfusions for patients with severe blood loss, anemia, bleeding disorders, certain cancers, major injuries, or complications during surgery.
+
+Blood donors voluntarily donate blood at blood donation centers or blood banks after completing a health assessment and medical questionnaire. Healthcare professionals examine donors, measure their blood pressure, hemoglobin level, pulse rate, and body temperature, and determine whether they are eligible to donate blood. Healthy donors usually donate whole blood, although some donors provide plasma or platelets through apheresis procedures.
+
+Blood banks collect donated blood, assign unique identification numbers, test every blood sample for infectious diseases, determine the blood group, separate whole blood into red blood cells, plasma, platelets, and cryoprecipitate, and store each blood component under controlled temperatures. Blood banks also maintain blood inventories and supply compatible blood components to hospitals whenever they receive transfusion requests.
+
+Before a blood transfusion, laboratory technicians determine the patient's blood group, perform antibody screening, conduct cross-matching tests, and verify that the donated blood is compatible with the recipient. Nurses confirm the patient's identity, verify the blood unit, inspect the blood bag for damage or contamination, and prepare the transfusion equipment.
+
+Red blood cells carry oxygen throughout the body and are transfused to patients with severe anemia or excessive blood loss. Platelets help blood clot and are administered to patients with low platelet counts or active bleeding. Plasma contains clotting factors and proteins and is used to treat patients with liver disease, burns, or clotting disorders. Cryoprecipitate provides fibrinogen and other clotting proteins for patients with severe bleeding disorders.
+
+During the transfusion, nurses monitor the patient's temperature, blood pressure, pulse rate, oxygen saturation, and vital signs at regular intervals. They observe patients for fever, chills, allergic reactions, breathing difficulty, skin rashes, or other signs of transfusion reactions. If a serious reaction occurs, nurses immediately stop the transfusion, notify the doctor, administer emergency treatment, and send the remaining blood sample to the laboratory for investigation.
+
+Medical equipment such as infusion pumps, blood warmers, intravenous lines, and patient monitors supports safe blood transfusion. Doctors evaluate the patient's response to treatment, order follow-up blood tests, document the procedure in electronic medical records, and recommend additional transfusions if necessary.
+
+Proper donor screening, blood testing, compatibility testing, and careful patient monitoring reduce the risk of transfusion complications and improve patient safety.

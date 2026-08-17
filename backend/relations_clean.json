@@ -1,0 +1,794 @@
+[
+    {
+        "source": "medical procedure",
+        "relationship": "transfer",
+        "target": "patient 's bloodstream",
+        "confidence": 1.0,
+        "context": "Blood transfusion is a medical procedure in which donated blood or blood components are transferred into a patient's bloodstream to replace lost blood or treat certain medical conditions."
+    },
+    {
+        "source": "doctor",
+        "relationship": "recommend",
+        "target": "blood transfusion",
+        "confidence": 1.0,
+        "context": "Doctors recommend blood transfusions for patients with severe blood loss, anemia, bleeding disorders, certain cancers, major injuries, or complications during surgery."
+    },
+    {
+        "source": "Blood donor",
+        "relationship": "donate",
+        "target": "blood",
+        "confidence": 1.0,
+        "context": "Blood donors voluntarily donate blood at blood donation centers or blood banks after completing a health assessment and medical questionnaire."
+    },
+    {
+        "source": "Healthcare professional",
+        "relationship": "examine",
+        "target": "donor",
+        "confidence": 1.0,
+        "context": "Healthcare professionals examine donors, measure their blood pressure, hemoglobin level, pulse rate, and body temperature, and determine whether they are eligible to donate blood."
+    },
+    {
+        "source": "Healthcare professional",
+        "relationship": "measure",
+        "target": "blood pressure",
+        "confidence": 1.0,
+        "context": "Healthcare professionals examine donors, measure their blood pressure, hemoglobin level, pulse rate, and body temperature, and determine whether they are eligible to donate blood."
+    },
+    {
+        "source": "Healthcare professional",
+        "relationship": "measure",
+        "target": "hemoglobin level",
+        "confidence": 0.95,
+        "context": "Healthcare professionals examine donors, measure their blood pressure, hemoglobin level, pulse rate, and body temperature, and determine whether they are eligible to donate blood."
+    },
+    {
+        "source": "Healthcare professional",
+        "relationship": "measure",
+        "target": "pulse rate",
+        "confidence": 0.95,
+        "context": "Healthcare professionals examine donors, measure their blood pressure, hemoglobin level, pulse rate, and body temperature, and determine whether they are eligible to donate blood."
+    },
+    {
+        "source": "Healthcare professional",
+        "relationship": "measure",
+        "target": "body temperature",
+        "confidence": 0.95,
+        "context": "Healthcare professionals examine donors, measure their blood pressure, hemoglobin level, pulse rate, and body temperature, and determine whether they are eligible to donate blood."
+    },
+    {
+        "source": "Healthy donor",
+        "relationship": "donate",
+        "target": "whole blood",
+        "confidence": 1.0,
+        "context": "Healthy donors usually donate whole blood, although some donors provide plasma or platelets through apheresis procedures."
+    },
+    {
+        "source": "some donor",
+        "relationship": "provides",
+        "target": "plasma",
+        "confidence": 1.0,
+        "context": "Healthy donors usually donate whole blood, although some donors provide plasma or platelets through apheresis procedures."
+    },
+    {
+        "source": "Blood bank",
+        "relationship": "collect",
+        "target": "blood",
+        "confidence": 1.0,
+        "context": "Blood banks collect donated blood, assign unique identification numbers, test every blood sample for infectious diseases, determine the blood group, separate whole blood into red blood cells, plasma, platelets, and cryoprecipitate, and store each blood component under controlled temperatures."
+    },
+    {
+        "source": "Blood bank",
+        "relationship": "assign",
+        "target": "unique identification number",
+        "confidence": 1.0,
+        "context": "Blood banks collect donated blood, assign unique identification numbers, test every blood sample for infectious diseases, determine the blood group, separate whole blood into red blood cells, plasma, platelets, and cryoprecipitate, and store each blood component under controlled temperatures."
+    },
+    {
+        "source": "Blood bank",
+        "relationship": "maintains",
+        "target": "blood inventory",
+        "confidence": 1.0,
+        "context": "Blood banks also maintain blood inventories and supply compatible blood components to hospitals whenever they receive transfusion requests."
+    },
+    {
+        "source": "Blood bank",
+        "relationship": "maintains",
+        "target": "blood component",
+        "confidence": 0.95,
+        "context": "Blood banks also maintain blood inventories and supply compatible blood components to hospitals whenever they receive transfusion requests."
+    },
+    {
+        "source": "laboratory technician",
+        "relationship": "determine",
+        "target": "blood group",
+        "confidence": 1.0,
+        "context": "Before a blood transfusion, laboratory technicians determine the patient's blood group, perform antibody screening, conduct cross-matching tests, and verify that the donated blood is compatible with the recipient."
+    },
+    {
+        "source": "laboratory technician",
+        "relationship": "performs",
+        "target": "antibody screening",
+        "confidence": 1.0,
+        "context": "Before a blood transfusion, laboratory technicians determine the patient's blood group, perform antibody screening, conduct cross-matching tests, and verify that the donated blood is compatible with the recipient."
+    },
+    {
+        "source": "nurse",
+        "relationship": "confirm",
+        "target": "patient 's identity",
+        "confidence": 1.0,
+        "context": "Nurses confirm the patient's identity, verify the blood unit, inspect the blood bag for damage or contamination, and prepare the transfusion equipment."
+    },
+    {
+        "source": "nurse",
+        "relationship": "verify",
+        "target": "blood unit",
+        "confidence": 1.0,
+        "context": "Nurses confirm the patient's identity, verify the blood unit, inspect the blood bag for damage or contamination, and prepare the transfusion equipment."
+    },
+    {
+        "source": "Red blood cell",
+        "relationship": "carry",
+        "target": "oxygen",
+        "confidence": 1.0,
+        "context": "Red blood cells carry oxygen throughout the body and are transfused to patients with severe anemia or excessive blood loss."
+    },
+    {
+        "source": "Red blood cell",
+        "relationship": "transfuse",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "Red blood cells carry oxygen throughout the body and are transfused to patients with severe anemia or excessive blood loss."
+    },
+    {
+        "source": "Red blood cell",
+        "relationship": "transfuse",
+        "target": "severe anemia",
+        "confidence": 1.0,
+        "context": "Red blood cells carry oxygen throughout the body and are transfused to patients with severe anemia or excessive blood loss."
+    },
+    {
+        "source": "Red blood cell",
+        "relationship": "transfuse",
+        "target": "excessive blood loss",
+        "confidence": 0.95,
+        "context": "Red blood cells carry oxygen throughout the body and are transfused to patients with severe anemia or excessive blood loss."
+    },
+    {
+        "source": "platelet",
+        "relationship": "help",
+        "target": "blood clot",
+        "confidence": 1.0,
+        "context": "Platelets help blood clot and are administered to patients with low platelet counts or active bleeding."
+    },
+    {
+        "source": "platelet",
+        "relationship": "administers",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "Platelets help blood clot and are administered to patients with low platelet counts or active bleeding."
+    },
+    {
+        "source": "Plasma",
+        "relationship": "contains",
+        "target": "protein",
+        "confidence": 0.95,
+        "context": "Plasma contains clotting factors and proteins and is used to treat patients with liver disease, burns, or clotting disorders."
+    },
+    {
+        "source": "Plasma",
+        "relationship": "use",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "Plasma contains clotting factors and proteins and is used to treat patients with liver disease, burns, or clotting disorders."
+    },
+    {
+        "source": "Cryoprecipitate",
+        "relationship": "provides",
+        "target": "fibrinogen",
+        "confidence": 1.0,
+        "context": "Cryoprecipitate provides fibrinogen and other clotting proteins for patients with severe bleeding disorders."
+    },
+    {
+        "source": "Cryoprecipitate",
+        "relationship": "provides",
+        "target": "other clotting protein",
+        "confidence": 0.95,
+        "context": "Cryoprecipitate provides fibrinogen and other clotting proteins for patients with severe bleeding disorders."
+    },
+    {
+        "source": "Cryoprecipitate",
+        "relationship": "provides",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "Cryoprecipitate provides fibrinogen and other clotting proteins for patients with severe bleeding disorders."
+    },
+    {
+        "source": "nurse",
+        "relationship": "monitor",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "During the transfusion, nurses monitor the patient's temperature, blood pressure, pulse rate, oxygen saturation, and vital signs at regular intervals."
+    },
+    {
+        "source": "nurse",
+        "relationship": "monitor",
+        "target": "blood pressure",
+        "confidence": 0.95,
+        "context": "During the transfusion, nurses monitor the patient's temperature, blood pressure, pulse rate, oxygen saturation, and vital signs at regular intervals."
+    },
+    {
+        "source": "nurse",
+        "relationship": "monitor",
+        "target": "pulse rate",
+        "confidence": 0.95,
+        "context": "During the transfusion, nurses monitor the patient's temperature, blood pressure, pulse rate, oxygen saturation, and vital signs at regular intervals."
+    },
+    {
+        "source": "nurse",
+        "relationship": "monitor",
+        "target": "oxygen saturation",
+        "confidence": 0.95,
+        "context": "During the transfusion, nurses monitor the patient's temperature, blood pressure, pulse rate, oxygen saturation, and vital signs at regular intervals."
+    },
+    {
+        "source": "nurse",
+        "relationship": "monitor",
+        "target": "vital sign",
+        "confidence": 0.95,
+        "context": "During the transfusion, nurses monitor the patient's temperature, blood pressure, pulse rate, oxygen saturation, and vital signs at regular intervals."
+    },
+    {
+        "source": "nurse",
+        "relationship": "stop",
+        "target": "transfusion",
+        "confidence": 1.0,
+        "context": "If a serious reaction occurs, nurses immediately stop the transfusion, notify the doctor, administer emergency treatment, and send the remaining blood sample to the laboratory for investigation."
+    },
+    {
+        "source": "nurse",
+        "relationship": "notify",
+        "target": "doctor",
+        "confidence": 1.0,
+        "context": "If a serious reaction occurs, nurses immediately stop the transfusion, notify the doctor, administer emergency treatment, and send the remaining blood sample to the laboratory for investigation."
+    },
+    {
+        "source": "nurse",
+        "relationship": "notify",
+        "target": "emergency treatment",
+        "confidence": 1.0,
+        "context": "If a serious reaction occurs, nurses immediately stop the transfusion, notify the doctor, administer emergency treatment, and send the remaining blood sample to the laboratory for investigation."
+    },
+    {
+        "source": "Medical equipment",
+        "relationship": "support",
+        "target": "blood transfusion",
+        "confidence": 1.0,
+        "context": "Medical equipment such as infusion pumps, blood warmers, intravenous lines, and patient monitors supports safe blood transfusion."
+    },
+    {
+        "source": "doctor",
+        "relationship": "evaluate",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "Doctors evaluate the patient's response to treatment, order follow-up blood tests, document the procedure in electronic medical records, and recommend additional transfusions if necessary."
+    },
+    {
+        "source": "doctor",
+        "relationship": "document",
+        "target": "procedure",
+        "confidence": 1.0,
+        "context": "Doctors evaluate the patient's response to treatment, order follow-up blood tests, document the procedure in electronic medical records, and recommend additional transfusions if necessary."
+    },
+    {
+        "source": "donor screening",
+        "relationship": "improve",
+        "target": "patient safety",
+        "confidence": 1.0,
+        "context": "Proper donor screening, blood testing, compatibility testing, and careful patient monitoring reduce the risk of transfusion complications and improve patient safety."
+    },
+    {
+        "source": "hospital",
+        "relationship": "serves",
+        "target": "people",
+        "confidence": 1.0,
+        "context": "Hospitals serve people of all ages and provide both emergency and routine medical care."
+    },
+    {
+        "source": "hospital",
+        "relationship": "treats",
+        "target": "emergency",
+        "confidence": 1.0,
+        "context": "Hospitals serve people of all ages and provide both emergency and routine medical care."
+    },
+    {
+        "source": "hospital",
+        "relationship": "provides",
+        "target": "routine medical care",
+        "confidence": 0.95,
+        "context": "Hospitals serve people of all ages and provide both emergency and routine medical care."
+    },
+    {
+        "source": "hospital",
+        "relationship": "has_part",
+        "target": "several department",
+        "confidence": 1.0,
+        "context": "A hospital is divided into several departments, including the emergency department, outpatient department, inpatient ward, intensive care unit, operation theatre, laboratory, radiology department, pharmacy, and rehabilitation unit."
+    },
+    {
+        "source": "department",
+        "relationship": "performs",
+        "target": "specific medical function",
+        "confidence": 1.0,
+        "context": "Each department performs specific medical functions and works together to provide complete patient care."
+    },
+    {
+        "source": "department",
+        "relationship": "work",
+        "target": "patient care",
+        "confidence": 1.0,
+        "context": "Each department performs specific medical functions and works together to provide complete patient care."
+    },
+    {
+        "source": "emergency department",
+        "relationship": "treat",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "The emergency department treats patients with serious injuries, accidents, heart attacks, strokes, burns, poisoning, and other life-threatening conditions."
+    },
+    {
+        "source": "emergency department",
+        "relationship": "treat",
+        "target": "serious injury",
+        "confidence": 1.0,
+        "context": "The emergency department treats patients with serious injuries, accidents, heart attacks, strokes, burns, poisoning, and other life-threatening conditions."
+    },
+    {
+        "source": "emergency department",
+        "relationship": "treat",
+        "target": "accident",
+        "confidence": 0.95,
+        "context": "The emergency department treats patients with serious injuries, accidents, heart attacks, strokes, burns, poisoning, and other life-threatening conditions."
+    },
+    {
+        "source": "emergency department",
+        "relationship": "treat",
+        "target": "heart attack",
+        "confidence": 0.95,
+        "context": "The emergency department treats patients with serious injuries, accidents, heart attacks, strokes, burns, poisoning, and other life-threatening conditions."
+    },
+    {
+        "source": "emergency department",
+        "relationship": "treat",
+        "target": "stroke",
+        "confidence": 0.95,
+        "context": "The emergency department treats patients with serious injuries, accidents, heart attacks, strokes, burns, poisoning, and other life-threatening conditions."
+    },
+    {
+        "source": "emergency department",
+        "relationship": "treat",
+        "target": "life - threatening condition",
+        "confidence": 0.95,
+        "context": "The emergency department treats patients with serious injuries, accidents, heart attacks, strokes, burns, poisoning, and other life-threatening conditions."
+    },
+    {
+        "source": "outpatient department",
+        "relationship": "examine",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "The outpatient department examines patients who do not require hospital admission."
+    },
+    {
+        "source": "patient",
+        "relationship": "admit",
+        "target": "ward",
+        "confidence": 1.0,
+        "context": "Patients with serious medical conditions are admitted to inpatient wards or intensive care units for continuous monitoring and treatment."
+    },
+    {
+        "source": "patient",
+        "relationship": "admit",
+        "target": "intensive care unit",
+        "confidence": 0.95,
+        "context": "Patients with serious medical conditions are admitted to inpatient wards or intensive care units for continuous monitoring and treatment."
+    },
+    {
+        "source": "doctor",
+        "relationship": "examine",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "Doctors examine patients, identify symptoms, diagnose diseases, prescribe medicines, and recommend medical procedures."
+    },
+    {
+        "source": "doctor",
+        "relationship": "identify",
+        "target": "symptom",
+        "confidence": 1.0,
+        "context": "Doctors examine patients, identify symptoms, diagnose diseases, prescribe medicines, and recommend medical procedures."
+    },
+    {
+        "source": "doctor",
+        "relationship": "identify",
+        "target": "disease",
+        "confidence": 0.95,
+        "context": "Doctors examine patients, identify symptoms, diagnose diseases, prescribe medicines, and recommend medical procedures."
+    },
+    {
+        "source": "nurse",
+        "relationship": "monitor",
+        "target": "medicine",
+        "confidence": 0.95,
+        "context": "Nurses monitor vital signs, administer medicines, assist during medical procedures, and provide daily patient care."
+    },
+    {
+        "source": "surgeon",
+        "relationship": "performs",
+        "target": "operation",
+        "confidence": 1.0,
+        "context": "Surgeons perform operations in the operation theatre using sterilized surgical instruments."
+    },
+    {
+        "source": "anesthesiologist",
+        "relationship": "administers",
+        "target": "anesthesia",
+        "confidence": 1.0,
+        "context": "Anesthesiologists administer anesthesia before surgical procedures and monitor patients during surgery."
+    },
+    {
+        "source": "anesthesiologist",
+        "relationship": "monitor",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "Anesthesiologists administer anesthesia before surgical procedures and monitor patients during surgery."
+    },
+    {
+        "source": "laboratory",
+        "relationship": "performs",
+        "target": "blood test",
+        "confidence": 1.0,
+        "context": "The laboratory performs blood tests, urine tests, stool tests, and other diagnostic investigations."
+    },
+    {
+        "source": "laboratory",
+        "relationship": "performs",
+        "target": "urine test",
+        "confidence": 0.95,
+        "context": "The laboratory performs blood tests, urine tests, stool tests, and other diagnostic investigations."
+    },
+    {
+        "source": "laboratory",
+        "relationship": "performs",
+        "target": "stool test",
+        "confidence": 0.95,
+        "context": "The laboratory performs blood tests, urine tests, stool tests, and other diagnostic investigations."
+    },
+    {
+        "source": "laboratory",
+        "relationship": "performs",
+        "target": "other diagnostic investigation",
+        "confidence": 0.95,
+        "context": "The laboratory performs blood tests, urine tests, stool tests, and other diagnostic investigations."
+    },
+    {
+        "source": "radiology department",
+        "relationship": "conducts",
+        "target": "X - ray",
+        "confidence": 1.0,
+        "context": "The radiology department conducts X-rays, ultrasound scans, CT scans, MRI scans, and mammography to detect diseases and injuries."
+    },
+    {
+        "source": "radiology department",
+        "relationship": "conducts",
+        "target": "ultrasound scan",
+        "confidence": 0.95,
+        "context": "The radiology department conducts X-rays, ultrasound scans, CT scans, MRI scans, and mammography to detect diseases and injuries."
+    },
+    {
+        "source": "radiology department",
+        "relationship": "conducts",
+        "target": "CT scan",
+        "confidence": 0.95,
+        "context": "The radiology department conducts X-rays, ultrasound scans, CT scans, MRI scans, and mammography to detect diseases and injuries."
+    },
+    {
+        "source": "radiology department",
+        "relationship": "conducts",
+        "target": "MRI scan",
+        "confidence": 0.95,
+        "context": "The radiology department conducts X-rays, ultrasound scans, CT scans, MRI scans, and mammography to detect diseases and injuries."
+    },
+    {
+        "source": "radiology department",
+        "relationship": "conducts",
+        "target": "mammography",
+        "confidence": 0.95,
+        "context": "The radiology department conducts X-rays, ultrasound scans, CT scans, MRI scans, and mammography to detect diseases and injuries."
+    },
+    {
+        "source": "pharmacist",
+        "relationship": "dispense",
+        "target": "medicine",
+        "confidence": 1.0,
+        "context": "Pharmacists dispense medicines according to medical prescriptions and provide instructions for proper medication use."
+    },
+    {
+        "source": "pharmacist",
+        "relationship": "provides",
+        "target": "instruction",
+        "confidence": 1.0,
+        "context": "Pharmacists dispense medicines according to medical prescriptions and provide instructions for proper medication use."
+    },
+    {
+        "source": "Medical equipment",
+        "relationship": "support",
+        "target": "diagnosis",
+        "confidence": 1.0,
+        "context": "Medical equipment such as ventilators, ECG machines, infusion pumps, defibrillators, wheelchairs, and patient monitors supports diagnosis, treatment, and patient care."
+    },
+    {
+        "source": "Medical equipment",
+        "relationship": "support",
+        "target": "treatment",
+        "confidence": 0.95,
+        "context": "Medical equipment such as ventilators, ECG machines, infusion pumps, defibrillators, wheelchairs, and patient monitors supports diagnosis, treatment, and patient care."
+    },
+    {
+        "source": "Medical equipment",
+        "relationship": "support",
+        "target": "patient care",
+        "confidence": 0.95,
+        "context": "Medical equipment such as ventilators, ECG machines, infusion pumps, defibrillators, wheelchairs, and patient monitors supports diagnosis, treatment, and patient care."
+    },
+    {
+        "source": "hospital",
+        "relationship": "maintains",
+        "target": "electronic medical record",
+        "confidence": 1.0,
+        "context": "Hospitals maintain electronic medical records that include patient history, laboratory reports, imaging reports, prescriptions, allergies, diagnoses, and discharge summaries."
+    },
+    {
+        "source": "Infection control",
+        "relationship": "includes",
+        "target": "hand hygiene",
+        "confidence": 1.0,
+        "context": "Infection control includes hand hygiene, sterilization of medical instruments, waste segregation, and the use of personal protective equipment."
+    },
+    {
+        "source": "Infection control",
+        "relationship": "includes",
+        "target": "sterilization",
+        "confidence": 0.95,
+        "context": "Infection control includes hand hygiene, sterilization of medical instruments, waste segregation, and the use of personal protective equipment."
+    },
+    {
+        "source": "patient",
+        "relationship": "receive",
+        "target": "discharge instruction",
+        "confidence": 1.0,
+        "context": "After treatment, patients receive discharge instructions, follow-up appointments, rehabilitation services, vaccination recommendations, dietary advice, and preventive healthcare guidance to support long-term recovery and overall well-being."
+    },
+    {
+        "source": "patient",
+        "relationship": "receive",
+        "target": "-appointment",
+        "confidence": 0.95,
+        "context": "After treatment, patients receive discharge instructions, follow-up appointments, rehabilitation services, vaccination recommendations, dietary advice, and preventive healthcare guidance to support long-term recovery and overall well-being."
+    },
+    {
+        "source": "patient",
+        "relationship": "receive",
+        "target": "rehabilitation service",
+        "confidence": 0.95,
+        "context": "After treatment, patients receive discharge instructions, follow-up appointments, rehabilitation services, vaccination recommendations, dietary advice, and preventive healthcare guidance to support long-term recovery and overall well-being."
+    },
+    {
+        "source": "patient",
+        "relationship": "receive",
+        "target": "vaccination",
+        "confidence": 0.95,
+        "context": "After treatment, patients receive discharge instructions, follow-up appointments, rehabilitation services, vaccination recommendations, dietary advice, and preventive healthcare guidance to support long-term recovery and overall well-being."
+    },
+    {
+        "source": "patient",
+        "relationship": "receive",
+        "target": "dietary advice",
+        "confidence": 0.95,
+        "context": "After treatment, patients receive discharge instructions, follow-up appointments, rehabilitation services, vaccination recommendations, dietary advice, and preventive healthcare guidance to support long-term recovery and overall well-being."
+    },
+    {
+        "source": "patient",
+        "relationship": "receive",
+        "target": "preventive healthcare guidance",
+        "confidence": 0.95,
+        "context": "After treatment, patients receive discharge instructions, follow-up appointments, rehabilitation services, vaccination recommendations, dietary advice, and preventive healthcare guidance to support long-term recovery and overall well-being."
+    },
+    {
+        "source": "person",
+        "relationship": "develop",
+        "target": "sudden illness",
+        "confidence": 1.0,
+        "context": "An emergency medical situation occurs when a person develops a sudden illness or suffers a serious injury that requires immediate medical attention."
+    },
+    {
+        "source": "person",
+        "relationship": "suffer",
+        "target": "serious injury",
+        "confidence": 1.0,
+        "context": "An emergency medical situation occurs when a person develops a sudden illness or suffers a serious injury that requires immediate medical attention."
+    },
+    {
+        "source": "medical emergency",
+        "relationship": "includes",
+        "target": "heart attack",
+        "confidence": 1.0,
+        "context": "Common medical emergencies include heart attacks, strokes, severe bleeding, burns, poisoning, allergic reactions, fractures, and road accidents."
+    },
+    {
+        "source": "medical emergency",
+        "relationship": "includes",
+        "target": "stroke",
+        "confidence": 0.95,
+        "context": "Common medical emergencies include heart attacks, strokes, severe bleeding, burns, poisoning, allergic reactions, fractures, and road accidents."
+    },
+    {
+        "source": "medical emergency",
+        "relationship": "includes",
+        "target": "severe bleeding",
+        "confidence": 0.95,
+        "context": "Common medical emergencies include heart attacks, strokes, severe bleeding, burns, poisoning, allergic reactions, fractures, and road accidents."
+    },
+    {
+        "source": "medical emergency",
+        "relationship": "includes",
+        "target": "allergic reaction",
+        "confidence": 0.95,
+        "context": "Common medical emergencies include heart attacks, strokes, severe bleeding, burns, poisoning, allergic reactions, fractures, and road accidents."
+    },
+    {
+        "source": "medical emergency",
+        "relationship": "includes",
+        "target": "road accident",
+        "confidence": 0.95,
+        "context": "Common medical emergencies include heart attacks, strokes, severe bleeding, burns, poisoning, allergic reactions, fractures, and road accidents."
+    },
+    {
+        "source": "bystander",
+        "relationship": "call",
+        "target": "emergency medical service",
+        "confidence": 1.0,
+        "context": "A bystander should immediately call emergency medical services and provide the patient's location, age, symptoms, and the nature of the emergency."
+    },
+    {
+        "source": "bystander",
+        "relationship": "provides",
+        "target": "patient 's location",
+        "confidence": 1.0,
+        "context": "A bystander should immediately call emergency medical services and provide the patient's location, age, symptoms, and the nature of the emergency."
+    },
+    {
+        "source": "bystander",
+        "relationship": "provides",
+        "target": "age",
+        "confidence": 0.95,
+        "context": "A bystander should immediately call emergency medical services and provide the patient's location, age, symptoms, and the nature of the emergency."
+    },
+    {
+        "source": "bystander",
+        "relationship": "provides",
+        "target": "symptom",
+        "confidence": 0.95,
+        "context": "A bystander should immediately call emergency medical services and provide the patient's location, age, symptoms, and the nature of the emergency."
+    },
+    {
+        "source": "bystander",
+        "relationship": "provides",
+        "target": "nature",
+        "confidence": 0.95,
+        "context": "A bystander should immediately call emergency medical services and provide the patient's location, age, symptoms, and the nature of the emergency."
+    },
+    {
+        "source": "individual",
+        "relationship": "performs",
+        "target": "first aid",
+        "confidence": 1.0,
+        "context": "Until professional help arrives, trained individuals may perform first aid or cardiopulmonary resuscitation (CPR) if necessary."
+    },
+    {
+        "source": "individual",
+        "relationship": "performs",
+        "target": "cardiopulmonary resuscitation",
+        "confidence": 0.95,
+        "context": "Until professional help arrives, trained individuals may perform first aid or cardiopulmonary resuscitation (CPR) if necessary."
+    },
+
+    {
+        "source": "paramedic",
+        "relationship": "assess",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "Paramedics assess the patient's condition, monitor vital signs, provide oxygen therapy, control bleeding, administer emergency medications, and transport the patient to the nearest hospital."
+    },
+    {
+        "source": "paramedic",
+        "relationship": "monitor",
+        "target": "vital sign",
+        "confidence": 1.0,
+        "context": "Paramedics assess the patient's condition, monitor vital signs, provide oxygen therapy, control bleeding, administer emergency medications, and transport the patient to the nearest hospital."
+    },
+    {
+        "source": "patient",
+        "relationship": "admit",
+        "target": "monitoring",
+        "confidence": 1.0,
+        "context": "Patients with life-threatening conditions may be admitted to the intensive care unit for continuous monitoring."
+    },
+    {
+        "source": "surgeon",
+        "relationship": "performs",
+        "target": "emergency operation",
+        "confidence": 1.0,
+        "context": "Surgeons perform emergency operations when internal bleeding, severe trauma, or organ damage is present."
+    },
+    {
+        "source": "nurse",
+        "relationship": "assist",
+        "target": "patient care",
+        "confidence": 1.0,
+        "context": "Nurses regularly monitor vital signs, administer medicines, and assist with patient care throughout treatment."
+    },
+    {
+        "source": "Medical equipment",
+        "relationship": "support",
+        "target": "diagnosis and emergency treatment",
+        "confidence": 1.0,
+        "context": "Medical equipment such as defibrillators, ventilators, ECG machines, infusion pumps, and patient monitors supports diagnosis and emergency treatment."
+    },
+    {
+        "source": "Blood bank",
+        "relationship": "provides",
+        "target": "blood",
+        "confidence": 1.0,
+        "context": "Blood banks provide compatible blood for patients who require transfusions."
+    },
+    {
+        "source": "CT scan",
+        "relationship": "identify",
+        "target": "internal injury",
+        "confidence": 0.95,
+        "context": "Radiology departments conduct X-rays, CT scans, and MRI scans to identify fractures, internal injuries, and other medical conditions."
+    },
+    {
+        "source": "CT scan",
+        "relationship": "identify",
+        "target": "medical condition",
+        "confidence": 0.95,
+        "context": "Radiology departments conduct X-rays, CT scans, and MRI scans to identify fractures, internal injuries, and other medical conditions."
+    },
+    {
+        "source": "doctor",
+        "relationship": "provides",
+        "target": "discharge instruction",
+        "confidence": 1.0,
+        "context": "After the patient's condition becomes stable, doctors provide discharge instructions, prescribe medicines, recommend follow-up appointments, and advise lifestyle modifications to reduce the risk of future medical emergencies."
+    },
+    {
+        "source": "doctor",
+        "relationship": "prescribe",
+        "target": "medicine",
+        "confidence": 1.0,
+        "context": "After the patient's condition becomes stable, doctors provide discharge instructions, prescribe medicines, recommend follow-up appointments, and advise lifestyle modifications to reduce the risk of future medical emergencies."
+    },
+    {
+        "source": "medicine",
+        "relationship": "reach",
+        "target": "patient",
+        "confidence": 1.0,
+        "context": "During disasters or medical emergencies, hospitals, pharmacies, ambulances, and relief organizations work together to ensure that essential medicines reach patients as quickly as possible."
+    },
+    {
+        "source": "Timely access",
+        "relationship": "reduce",
+        "target": "suffering",
+        "confidence": 1.0,
+        "context": "Timely access to emergency medicines can prevent complications, reduce suffering, and save lives."
+    }
+]
