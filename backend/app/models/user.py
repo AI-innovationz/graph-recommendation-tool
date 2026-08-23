@@ -16,7 +16,7 @@ class User:
 
     id: str = field(default_factory = lambda: str(uuid4()))
     role: UserRole = UserRole.USER
-    preference:list = field(default_factory=list)
+    preferences:str = ''
     is_active: bool = True
     created_at: datetime = field(default_factory=lambda:datetime.now(timezone.utc))
     

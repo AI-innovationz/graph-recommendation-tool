@@ -1,104 +1,192 @@
 from collections import deque
-from app.nlp.embedding_service import EmbeddingService
 import heapq
 import math
+
+from app.nlp.embedding_service import EmbeddingService
+from app.knowledge.config import K, a
+
+
 em = EmbeddingService()
-from app.knowledge.config import K
-from app.knowledge.config import a
+
+
 def bfs(graph, start_items):
-    # enc = em.encode(start.lower())
-    # visited = set()
-    max_wt = 0
     semantic_cache = {}
     queue = []
-
+    final_cache = []
+    # ---------------------------------------------------------
+    # 1. Calculate semantic similarity for every
+    #    start item -> graph source
+    # ---------------------------------------------------------
     for start in start_items:
-        for source,neighbours in graph.graph.items():
-            print(str(start),"start-------")
-            similarity_score = em.similarity(str(start),source)
-            semantic_cache[source] = similarity_score
-            if similarity_score>=0.6:
-                queue.append([-similarity_score,source,[source],0,0])
-        # for weight, destination, relation in neighbours:    
- 
-   
-    # queue = deque(sorted(starting_nodes,itemgetter=(4),reverse=True))
+        semantic_cache[start] = {}
+
+        for source, neighbours in graph.graph.items():
+            print(str(start), "start-------")
+
+            similarity_score = em.similarity(str(start), source)
+
+            # Keep similarity separately for every start
+            semantic_cache[start][source] = similarity_score
+
+            if similarity_score >= 0.6:
+                queue.append([
+                    -similarity_score,  # max heap behavior
+                    source,
+                    [source],
+                    0,                  # depth
+                    0,                  # parent score
+                    start               # original start item
+                ])
+
     heapq.heapify(queue)
+
     recommendations = {}
-    
+    max_wt = 0
+
+    # ---------------------------------------------------------
+    # 2. Traverse the graph
+    # ---------------------------------------------------------
     while queue:
 
-        score,node,path, depth,parent_score = heapq.heappop(queue)
+        score, node, path, depth, parent_score, start = heapq.heappop(queue)
+
         score = -score
-        # print(score,node,parent_score,"weight---")
-        # if node in visited:
-        #     continue
 
-        # visited.add(node)
+        # -----------------------------------------------------
+        # Calculate final score
+        # -----------------------------------------------------
         if parent_score:
-
-            final_score = score*parent_score*pow(a,depth)
+            final_score = score * parent_score * pow(a, depth)
         else:
-             final_score = score
+            final_score = score
 
-        # final_score = score
-        
+        # Ignore weak paths
+        if final_score < 0.5:
+            continue
+
+        # -----------------------------------------------------
+        # Store recommendation
+        # -----------------------------------------------------
         if node not in recommendations:
+
             recommendations[node] = {
                 "score": final_score,
                 "path": path,
-                "depth": depth
+                "depth": depth,
+                "start": start
             }
-            # max_wt = max(max_wt,final_score)
+
         else:
+
             old_score = recommendations[node]["score"]
-            combined_score = old_score+final_score
-            recommendations[node]={
-                "score":combined_score,
-                "path":path,
-                "depth":depth
+
+            combined_score = old_score + final_score
+
+            recommendations[node] = {
+                "score": combined_score,
+                "path": path,
+                "depth": depth,
+                "start": start
             }
-            # max_wt = max(max_wt,combined_score)
+
+        # -----------------------------------------------------
+        # Traverse neighbours
+        # -----------------------------------------------------
         for weight, destination, relation in graph.get_neighbours(node):
 
-            new_score = weight
-            if destination.lower() in path:
-                continue
-            else:
-                new_path = path + [destination.lower()]
+            destination = destination.lower()
 
-            heapq.heappush(queue,
+            # Prevent cycles
+            if destination in path:
+                continue
+
+            new_path = path + [destination]
+
+            new_score = weight
+
+            heapq.heappush(
+                queue,
                 [
                     new_score,
-                    destination.lower(),
+                    destination,
                     new_path,
                     depth + 1,
-                    final_score
+                    final_score,
+                    start
                 ]
             )
 
-    for nodes,recommendation in recommendations.items():
-        if semantic_cache[recommendation["path"][len(recommendation["path"])-1]]>0.6:
-            recommendation["score"] = recommendation["score"]*0.5 + semantic_cache[recommendation["path"][len(recommendation["path"])-1]]*0.5
-            max_wt = max(max_wt,recommendation["score"])
+    # ---------------------------------------------------------
+    # 3. Combine graph score with semantic similarity
+    # ---------------------------------------------------------
+    for node, recommendation in recommendations.items():
 
+        start = recommendation["start"]
+        final_node = recommendation["path"][-1]
+
+        semantic_score = semantic_cache[start].get(final_node, 0)
+
+        if semantic_score > 0.6:
+
+            recommendation["score"] = (
+                recommendation["score"] * 0.5
+                + semantic_score * 0.5
+            )
+
+            max_wt = max(
+                max_wt,
+                recommendation["score"]
+            )
+
+    # ---------------------------------------------------------
+    # 4. Normalize scores
+    # ---------------------------------------------------------
     normalizing_factor = 0
-    if max_wt>1:
+
+    if max_wt > 1:
         normalizing_factor = max_wt - 1
+
+    # ---------------------------------------------------------
+    # 5. Keep top K recommendations
+    # ---------------------------------------------------------
     top_recommendations = []
     heapq.heapify(top_recommendations)
-    count =0
-    # print(recommendations)
-    print(max_wt,normalizing_factor,"factor----")
-    for nodes,recommendation in recommendations.items():
-        if semantic_cache[recommendation["path"][len(recommendation["path"])-1]]>0.6:
-            heapq.heappush(top_recommendations,((recommendation["score"]-normalizing_factor),nodes,recommendation["path"],recommendation["depth"]))
-            count+=1
-        if count>K:
-            heapq.heappop(top_recommendations)
-            count-=1
 
+    count = 0
 
+    print(
+        max_wt,
+        normalizing_factor,
+        "factor----"
+    )
 
-    # print(top_recommendations) 
-    return top_recommendations
+    for node, recommendation in recommendations.items():
+
+        start = recommendation["start"]
+        final_node = recommendation["path"][-1]
+
+        semantic_score = semantic_cache[start].get(
+            final_node,
+            0
+        )
+
+        if semantic_score > 0.6:
+            graph.add_edge(start,final_node,'related',recommendation["score"],[])
+            final_cache.append({'start':start,'final_node':final_node,'score':recommendation['score']})
+            heapq.heappush(
+                top_recommendations,
+                (
+                    recommendation["score"] - normalizing_factor,
+                    node,
+                    recommendation["path"],
+                    recommendation["depth"]
+                )
+            )
+
+            count += 1
+
+            if count > K:
+                heapq.heappop(top_recommendations)
+                count -= 1
+
+    return [top_recommendations,final_cache]

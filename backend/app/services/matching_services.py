@@ -28,18 +28,7 @@ class MatchingService:
                                   """
      
 
-    def find_best_helper(self, request: Request) -> list[Recommendation]:
+    def find_best_helper(self, recommendation: str) -> list[Recommendation]:
 
-        try:
-            users = self.user_repository.get_all()
-        except Exception as e:
-            print(e, "error----")
-            return []
-
-        recommendations = Recommendations(self.user_repository)
-
-        related_concepts = recommendations.get_related_concepts(request)
-        print(related_concepts,"RELATED CONCEPTS--------")
-        records,summary,keys = self.driver.execute_query(self.fetch_helper_query,preferences = related_concepts,database_="913033d2")
-        print(records,"result of helper query-----------")
+        records,summary,keys = self.driver.execute_query(self.fetch_helper_query,preferences = [recommendation],database_="913033d2")
         return records

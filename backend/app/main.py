@@ -1,76 +1,39 @@
-
-# print("program started")
-
-# from models.user import User
-# from models.location import Location
-# from models.request import Request,RequestType,RequestStatus
-# from repositories.user_repository import UserRepository
-# from services.matching_services import MatchingService
-
-
-
-# user_repo =UserRepository()
-
-
-# user = User(
-#     name= "Poushali",
-#     phone= "9836894759",
-#     location=Location(23.67,89.97)
-# )
-
-
-# helper = User(
-#     name = "Rahul",
-#     phone = "9999999999",
-#     location= Location(23.67,89.63)
-# )
-
-# helper.become_helper()
-
-# user_repo.add(user)
-# user_repo.add(helper)
-
-
-# request = Request(
-#     user_id = user.id,
-#     request_type=RequestType.GROCERY,
-#     description= "Need Groceries",
-#     location= user.location
-# )
-
-# matching_service = MatchingService(user_repo)
-# matched_helper = matching_service.find_best_helper(request)
-
-
-# # print(user_repo.get_all())
-
-
-
-
-# if matched_helper:
-#     print(f"Helper found: {matched_helper.name}")
-# else:
-#     print("No helper available")
-
-
 from fastapi import FastAPI
-from app.api.user_routes import router as user_router 
-from app.api.request_routes import router as req_router
-# from app.knowledge.data_fetch import DataFetch
+from fastapi.middleware.cors import CORSMiddleware
 
+# Import factory functions instead of static router instances
+from app.api.user_routes import create_user_router 
+from app.api.request_routes import create_req_router
+from app.knowledge.data_fetch import DataFetch
 
-
-
+# Initialize your FastAPI Application
 app = FastAPI(
-    title = "Community Helper Network"
+    title="Community Helper Network"
 )
 
-app.include_router(user_router,prefix="/api/v1")
+# Configure CORS Middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# 1. Fetch the graph data once on application startup
+df = DataFetch()
+graph_instance = df.fetch_data()
+
+# 2. Initialize routers via factory functions, passing the live graph reference
+user_router = create_user_router(graph_instance)
+req_router = create_req_router(graph_instance)
+
+# 3. Mount the dynamic routers into your application
+app.include_router(user_router, prefix="/api/v1")
 app.include_router(req_router, prefix="/api/v1")
 
 @app.get("/")
-
 def home():
     return {
-        "message":"Community Helper Network"
+        "message": "Community Helper Network"
     }

@@ -1,7 +1,9 @@
 from app.models.user import User
 from app.models.location import Location
 from neo4j import GraphDatabase
-
+# from app.knowledge.graph import knowledgeGraph
+from app.utils.parseRequest import parse_request
+from app.nlp.embedding_service import EmbeddingService
 URI = "neo4j+ssc://913033d2.databases.neo4j.io"
 AUTH = (
     "913033d2",
@@ -34,7 +36,7 @@ class UserRepository:
 
                     UNWIND $preferences AS pref
 
-                    MATCH (s:Entity {name: pref})
+                    MERGE (s:Entity {name: pref})
 
                     MERGE (u)-[:HELPS_WITH]->(s)
                 """
@@ -44,6 +46,7 @@ class UserRepository:
                     })
                     RETURN u
                     """
+        
     def add(self, user:User,raw_user):
         self.users.append(user)
         self.driver.execute_query(
@@ -75,7 +78,20 @@ class UserRepository:
         location=Location(node["latitude"],node["longitude"])
     )
 
-    def update_user(self,user:User):
-        print(user.preference,"pref----")
-        records, summary,keys=self.driver.execute_query(self.update_query,user_id=user.id,name=user.name,preferences = user.preference,database_="913033d2")
-        print(records,summary,"helper records---")
+    def update_user(self,user:User,graph):
+        em = EmbeddingService()
+        print(user,"user---------")
+        print(user.preferences,"pref----")
+        preferences = parse_request([],user.preferences)
+        final_pref = preferences[:]
+        for p in preferences:
+            for source,neighbours in graph.graph.items():
+                # print(source)
+                if em.similarity(str(p),source)>=0.9:
+                    final_pref.append(source)
+        print(final_pref,"final_pref- array--")     
+        try:
+            records, summary,keys=self.driver.execute_query(self.update_query,user_id=user.id,name=user.name,preferences = final_pref,database_="913033d2")
+            return final_pref
+        except Exception as e:
+            return e
