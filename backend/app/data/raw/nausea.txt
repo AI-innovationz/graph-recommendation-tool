@@ -1,0 +1,99 @@
+Nausea means feeling like you may vomit.
+
+Vomiting means throwing food or liquid out of the stomach.
+
+Stomach infections can cause nausea.
+
+Stomach infections can cause vomiting.
+
+Food poisoning can cause nausea.
+
+Food poisoning can cause vomiting.
+
+Motion sickness can cause nausea.
+
+Motion sickness can cause vomiting.
+
+Pregnancy can cause nausea.
+
+Some medicines can cause nausea.
+
+Some medicines can cause vomiting.
+
+Eating too much food can cause nausea.
+
+Eating spoiled food can cause vomiting.
+
+Alcohol can cause nausea.
+
+Alcohol can cause vomiting.
+
+Stress can cause nausea.
+
+Anxiety can cause nausea.
+
+Headaches can cause nausea.
+
+Migraine can cause nausea.
+
+Fever can cause nausea.
+
+Nausea can reduce appetite.
+
+Vomiting can cause stomach discomfort.
+
+Vomiting can cause weakness.
+
+Vomiting can cause dehydration.
+
+Vomiting can cause loss of fluids.
+
+Vomiting can cause loss of body salts.
+
+Dehydration can cause dizziness.
+
+Dehydration can cause dry mouth.
+
+Dehydration can cause weakness.
+
+Drinking small amounts of water can replace lost fluids.
+
+Oral rehydration solution can replace lost fluids and salts.
+
+Small meals can reduce stomach discomfort.
+
+Bland foods can be easier to eat during nausea.
+
+Rest can help the body recover.
+
+Avoiding strong smells can reduce nausea.
+
+Avoiding heavy meals can reduce nausea.
+
+Avoiding spicy foods can reduce stomach discomfort.
+
+Avoiding oily foods can reduce nausea.
+
+A healthcare professional can find the cause of nausea.
+
+A healthcare professional can find the cause of vomiting.
+
+A healthcare professional can recommend treatment.
+
+Contact a doctor if vomiting continues.
+
+Contact a doctor if you cannot keep fluids down.
+
+Contact a doctor if vomiting causes severe weakness.
+
+Contact a doctor if you have signs of dehydration.
+
+Contact a doctor if vomiting contains blood.
+
+Seek emergency help for severe stomach pain.
+
+Seek emergency help for severe dehydration.
+
+Seek emergency help if you faint.
+
+Seek emergency help if you have severe confusion.

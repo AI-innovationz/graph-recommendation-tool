@@ -1,0 +1,95 @@
+Fever means a higher than normal body temperature.
+
+An infection can cause a fever.
+
+A cold can cause a fever.
+
+The flu can cause a fever.
+
+A throat infection can cause a fever.
+
+An ear infection can cause a fever.
+
+A lung infection can cause a fever.
+
+A urinary infection can cause a fever.
+
+Some medicines can cause a fever.
+
+Some vaccines can cause a mild fever.
+
+Fever can cause sweating.
+
+Fever can cause chills.
+
+Fever can cause weakness.
+
+Fever can cause tiredness.
+
+Fever can cause a headache.
+
+Fever can cause muscle aches.
+
+Fever can reduce appetite.
+
+Fever can cause dehydration.
+
+Dehydration can cause weakness.
+
+Fever can increase the body's need for fluids.
+
+Drinking fluids can prevent dehydration.
+
+Rest can help the body recover.
+
+Light clothing can help reduce discomfort.
+
+A cool room can improve comfort.
+
+A healthcare professional can identify the cause of fever.
+
+A healthcare professional can recommend treatment.
+
+A thermometer can measure body temperature.
+
+Check your temperature if you feel feverish.
+
+Drink plenty of fluids during a fever.
+
+Get enough rest during a fever.
+
+Contact a healthcare professional if fever continues.
+
+Contact a healthcare professional if fever keeps returning.
+
+Contact a healthcare professional if fever causes severe weakness.
+
+Contact a healthcare professional if fever occurs with a severe headache.
+
+Contact a healthcare professional if fever occurs with difficulty breathing.
+
+Contact a healthcare professional if fever occurs with a stiff neck.
+
+Contact a healthcare professional if fever occurs with confusion.
+
+Seek emergency help for severe breathing problems.
+
+Seek emergency help for severe confusion.
+
+Seek emergency help for loss of consciousness.
+
+Seek emergency help for severe weakness.
+
+Seek emergency help if you cannot drink fluids.
+
+Children can develop fever during infections.
+
+Older adults can develop fever during infections.
+
+People with weak immune systems can develop serious infections.
+
+Fever can sometimes indicate a serious infection.
+
+Severe or persistent fever needs medical attention.
+
+Do not ignore fever with serious symptoms.

@@ -7,8 +7,8 @@ nlp = spacy.load('en_core_web_sm')
 
 validator = TripletValidator(nlp)
 
-INPUT_FILE = "knowledge_base_triples.json"
-OUTPUT_FILE = "relations_clean.json"
+INPUT_FILE = "relations_clean.json"
+OUTPUT_FILE = "relations_clean2.json"
 REMOVED_FILE = "removed_relations.json"
 
 
@@ -47,7 +47,9 @@ for triple in triples:
         continue
 
     seen.add(key)
-
+    triple["source"]= triple["source"].strip().lower()
+    triple["relationship"] = triple["relationship"].strip().lower()
+    triple["target"] = triple["target"].strip().lower()
     clean.append(triple)
 
 

@@ -9,12 +9,13 @@ from app.services.recommendation_services import Recommendations
 from app.models.recommendation import Recommendation
 from app.repositories.user_repository import UserRepository
 from app.nlp.graph_builder import GraphBuilder
-from app.models.feedback import FeedbackItem
+from app.models.feedback import FeedbackItem,FeedbackObj
+from app.models.match import Match
 # Initialize repositories globally or within the function scope
 req_repo = RequestRepository()
 user_repo = UserRepository()
 
-def create_req_router(graph) -> APIRouter:
+def create_req_router(graph,vi) -> APIRouter:
     # 1. Initialize the router inside the factory function scope
     router = APIRouter(
         prefix="/requests",
@@ -67,10 +68,17 @@ def create_req_router(graph) -> APIRouter:
         return req
 
     @router.post("/match")
-    def match_request(recommendation_help: str):
+    def match_request(request:Match):
+        print(request.request)
         matchingService = MatchingService(user_repo)
         print(matchingService)
-        helper = matchingService.find_best_helper(recommendation_help)
+
+        helper = matchingService.find_best_helper(request.request)
+        for h in helper:
+            original_help = matchingService.find_best_helper(h)
+            h.original_help = original_help
+
+        # print(helper,original_help,"helper data--") 
         if helper is None:
             return {
                 "msg": "No helper found"
@@ -78,7 +86,7 @@ def create_req_router(graph) -> APIRouter:
         return helper
 
     @router.post("/{request_id}/recommendations")
-    def get_recommendations(request_id: str):
+    def get_recommendations(request_id):
         req = req_repo.get_by_id(request_id)
         print(req)
         
@@ -86,7 +94,7 @@ def create_req_router(graph) -> APIRouter:
         # Example: related_nodes = graph.find_neighbors(req.request_type)
         # print(f"Graph safely accessed inside recommendations: {graph}")
 
-        recommendations = Recommendations(user_repo,graph)
+        recommendations = Recommendations(user_repo,graph,vi)
         related_concepts,final_cache = recommendations.get_related_concepts(req)
         
         if related_concepts is None:
@@ -95,9 +103,10 @@ def create_req_router(graph) -> APIRouter:
             }
         return [related_concepts,final_cache]
 
-    @router.post("/{request_id}/feedback")
-    def update_user_feedbak(request_id: str, final_list:list[FeedbackItem]):
+    @router.post("/feedback")
+    def update_user_feedbak(rec_obj:FeedbackObj):
         updated_list = []
+        final_list = rec_obj.feedbackBody
         n = len(final_list)
         
         # 1. Build the complete updated_list first

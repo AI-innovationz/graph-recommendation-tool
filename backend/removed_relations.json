@@ -1,5 +1,26 @@
 [
     {
+        "source": "Abdominal pain",
+        "relationship": "feel",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Abdominal pain can feel like cramps."
+    },
+    {
+        "source": "symptom",
+        "relationship": "identify",
+        "target": "",
+        "confidence": 1.0,
+        "context": "The symptoms associated with abdominal pain can help identify its possible cause."
+    },
+    {
+        "source": "Asthma",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Asthma can cause wheezing."
+    },
+    {
         "source": "Plasma",
         "relationship": "contains",
         "target": "factor",
@@ -14,6 +35,671 @@
         "context": "Proper donor screening, blood testing, compatibility testing, and careful patient monitoring reduce the risk of transfusion complications and improve patient safety."
     },
     {
+        "source": "",
+        "relationship": "call",
+        "target": "metastasis",
+        "confidence": 1.0,
+        "context": "The spread of cancer to other parts of the body is called metastasis."
+    },
+    {
+        "source": "Cancer",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Cancer can cause changes in the skin."
+    },
+    {
+        "source": "Some cancer",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 0.95,
+        "context": "Some cancers can cause new lumps or bumps."
+    },
+    {
+        "source": "person",
+        "relationship": "have",
+        "target": "cancer",
+        "confidence": 1.0,
+        "context": "Having one or more possible cancer symptoms does not mean that a person has cancer."
+    },
+    {
+        "source": "Family history",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Family history of cancer can increase the risk of developing cancer."
+    },
+    {
+        "source": "Smoking",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Smoking increases the risk of several types of cancer."
+    },
+    {
+        "source": "Poor nutrition",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Poor nutrition can increase the risk of some cancers."
+    },
+    {
+        "source": "Lack",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Lack of physical activity can increase the risk of some cancers."
+    },
+    {
+        "source": "Some hormone therapy",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Some hormone therapies can increase the risk of certain cancers."
+    },
+    {
+        "source": "Radiation exposure",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Radiation exposure can increase the risk of cancer."
+    },
+    {
+        "source": "Ultraviolet radiation",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Ultraviolet radiation from the sun increases the risk of skin cancer."
+    },
+    {
+        "source": "Regular physical activity",
+        "relationship": "help",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Regular physical activity can help reduce the risk of some cancers."
+    },
+    {
+        "source": "group",
+        "relationship": "provides",
+        "target": "emotional support",
+        "confidence": 1.0,
+        "context": "Support groups can provide emotional support for people with cancer."
+    },
+    {
+        "source": "healthcare provider",
+        "relationship": "explain",
+        "target": "risk",
+        "confidence": 1.0,
+        "context": "A healthcare provider can explain the risks and benefits of treatment."
+    },
+    {
+        "source": "heart attack",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A heart attack can cause sweating."
+    },
+    {
+        "source": "heart attack",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A heart attack can cause fainting."
+    },
+    {
+        "source": "person",
+        "relationship": "try",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A person should not try to diagnose the cause of chest pain alone."
+    },
+    {
+        "source": "",
+        "relationship": "help",
+        "target": "throat",
+        "confidence": 1.0,
+        "context": "Coughing helps clear the throat and airways."
+    },
+    {
+        "source": "",
+        "relationship": "help",
+        "target": "airways",
+        "confidence": 0.95,
+        "context": "Coughing helps clear the throat and airways."
+    },
+    {
+        "source": "cold",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A cold can cause a cough."
+    },
+    {
+        "source": "flu",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "The flu can cause a cough."
+    },
+    {
+        "source": "Asthma",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Asthma can cause a cough."
+    },
+    {
+        "source": "allergy",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Allergies can cause a cough."
+    },
+    {
+        "source": "throat infection",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A throat infection can cause a cough."
+    },
+    {
+        "source": "lung infection",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A lung infection can cause a cough."
+    },
+    {
+        "source": "Smoking",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Smoking can cause a cough."
+    },
+    {
+        "source": "Air pollution",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Air pollution can cause a cough."
+    },
+    {
+        "source": "Dust",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Dust can cause a cough."
+    },
+    {
+        "source": "",
+        "relationship": "produce",
+        "target": "no mucus",
+        "confidence": 1.0,
+        "context": "A dry cough produces no mucus."
+    },
+    {
+        "source": "",
+        "relationship": "produce",
+        "target": "mucus",
+        "confidence": 1.0,
+        "context": "A wet cough produces mucus."
+    },
+    {
+        "source": "",
+        "relationship": "cause",
+        "target": "throat irritation",
+        "confidence": 1.0,
+        "context": "A cough can cause throat irritation."
+    },
+    {
+        "source": "",
+        "relationship": "cause",
+        "target": "chest discomfort",
+        "confidence": 1.0,
+        "context": "A cough can cause chest discomfort."
+    },
+    {
+        "source": "",
+        "relationship": "last",
+        "target": "several week",
+        "confidence": 1.0,
+        "context": "Contact a doctor if a cough lasts for several weeks."
+    },
+    {
+        "source": "",
+        "relationship": "cause",
+        "target": "severe breathing problem",
+        "confidence": 1.0,
+        "context": "Seek emergency help if a cough causes severe breathing problems."
+    },
+    {
+        "source": "Family history",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Family history can increase the risk of type 2 diabetes."
+    },
+    {
+        "source": "Being overweight",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Being overweight can increase the risk of type 2 diabetes."
+    },
+    {
+        "source": "Lack",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Lack of physical activity can increase the risk of type 2 diabetes."
+    },
+    {
+        "source": "diabete",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Diabetes can increase the risk of heart disease."
+    },
+    {
+        "source": "diabete",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Diabetes can increase the risk of stroke."
+    },
+    {
+        "source": "Low blood sugar",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Low blood sugar can cause sweating."
+    },
+    {
+        "source": "Diarrhea",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Diarrhea causes frequent loose stools."
+    },
+    {
+        "source": "Oral rehydration solution",
+        "relationship": "replace",
+        "target": "",
+        "confidence": 0.95,
+        "context": "Oral rehydration solution can replace lost fluids and salts."
+    },
+    {
+        "source": "water",
+        "relationship": "reduce",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Clean water can reduce the risk of infection."
+    },
+    {
+        "source": "Safe food preparation",
+        "relationship": "reduce",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Safe food preparation can reduce the risk of diarrhea."
+    },
+    {
+        "source": "healthcare",
+        "relationship": "find",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A healthcare professional can find the cause of diarrhea."
+    },
+    {
+        "source": "",
+        "relationship": "mean",
+        "target": "consciousness",
+        "confidence": 1.0,
+        "context": "Fainting means losing consciousness for a short time."
+    },
+    {
+        "source": "Low blood pressure",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Low blood pressure can cause fainting."
+    },
+    {
+        "source": "Dehydration",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Dehydration can cause fainting."
+    },
+    {
+        "source": "Low blood sugar",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Low blood sugar can cause fainting."
+    },
+    {
+        "source": "Severe pain",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Severe pain can cause fainting."
+    },
+    {
+        "source": "Fear",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Fear can cause fainting."
+    },
+    {
+        "source": "",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Fainting can cause falls and injuries."
+    },
+    {
+        "source": "",
+        "relationship": "cause",
+        "target": "injury",
+        "confidence": 0.95,
+        "context": "Fainting can cause falls and injuries."
+    },
+    {
+        "source": "Dizziness",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Dizziness can increase the risk of falling."
+    },
+    {
+        "source": "Sitting down",
+        "relationship": "help",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Sitting down can help prevent a fall during dizziness."
+    },
+    {
+        "source": "",
+        "relationship": "help",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Lying down can help prevent fainting."
+    },
+    {
+        "source": "healthcare",
+        "relationship": "find",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A healthcare professional can find the cause of dizziness."
+    },
+    {
+        "source": "healthcare",
+        "relationship": "find",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A healthcare professional can find the cause of fainting."
+    },
+    {
+        "source": "",
+        "relationship": "cause",
+        "target": "serious injury",
+        "confidence": 1.0,
+        "context": "Seek emergency help if fainting causes a serious injury."
+    },
+    {
+        "source": "",
+        "relationship": "occur",
+        "target": "chest pain",
+        "confidence": 1.0,
+        "context": "Seek emergency help if fainting occurs with chest pain."
+    },
+    {
+        "source": "",
+        "relationship": "occur",
+        "target": "severe breathing problem",
+        "confidence": 1.0,
+        "context": "Seek emergency help if fainting occurs with severe breathing problems."
+    },
+    {
+        "source": "",
+        "relationship": "occur",
+        "target": "fast heartbeat",
+        "confidence": 1.0,
+        "context": "Seek emergency help if fainting occurs with a fast heartbeat."
+    },
+    {
+        "source": "",
+        "relationship": "occur",
+        "target": "severe headache",
+        "confidence": 1.0,
+        "context": "Seek emergency help if fainting occurs with severe headache."
+    },
+    {
+        "source": "",
+        "relationship": "cause",
+        "target": "confusion",
+        "confidence": 1.0,
+        "context": "Seek emergency help if fainting causes confusion."
+    },
+    {
+        "source": "Fever",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Fever can cause sweating."
+    },
+    {
+        "source": "healthcare professional",
+        "relationship": "identify",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A healthcare professional can identify the cause of fever."
+    },
+    {
+        "source": "",
+        "relationship": "trigger",
+        "target": "headache",
+        "confidence": 1.0,
+        "context": "Changes in sleep can trigger headaches."
+    },
+    {
+        "source": "",
+        "relationship": "trigger",
+        "target": "some headache",
+        "confidence": 1.0,
+        "context": "Coughing can trigger some headaches."
+    },
+    {
+        "source": "",
+        "relationship": "trigger",
+        "target": "some headache",
+        "confidence": 1.0,
+        "context": "Sneezing can trigger some headaches."
+    },
+    {
+        "source": "healthcare provider",
+        "relationship": "ask",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A healthcare provider may ask about drinks that trigger headaches."
+    },
+    {
+        "source": "healthcare provider",
+        "relationship": "check",
+        "target": "",
+        "confidence": 0.95,
+        "context": "A healthcare provider may check for numbness or tingling."
+    },
+    {
+        "source": "",
+        "relationship": "help",
+        "target": "some headache",
+        "confidence": 1.0,
+        "context": "Massage of the head, neck, or back can help with some headaches."
+    },
+    {
+        "source": "",
+        "relationship": "cause",
+        "target": "medication - overuse headache",
+        "confidence": 1.0,
+        "context": "Frequent use of pain medication can cause medication-overuse headaches."
+    },
+    {
+        "source": "High blood pressure",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "High blood pressure can increase the risk of a heart attack."
+    },
+    {
+        "source": "High cholesterol",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "High cholesterol can increase the risk of a heart attack."
+    },
+    {
+        "source": "Smoking",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Smoking can increase the risk of a heart attack."
+    },
+    {
+        "source": "diabete",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Diabetes can increase the risk of a heart attack."
+    },
+    {
+        "source": "Obesity",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Obesity can increase the risk of a heart attack."
+    },
+    {
+        "source": "Lack",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Lack of physical activity can increase the risk of a heart attack."
+    },
+    {
+        "source": "heart attack",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A heart attack can cause sweating."
+    },
+    {
+        "source": "previous heart attack",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A previous heart attack can increase the risk of another heart attack."
+    },
+    {
+        "source": "Heart failure",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Heart failure can cause wheezing."
+    },
+    {
+        "source": "Heart failure",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Heart failure can cause a cough that produces white mucus."
+    },
+    {
+        "source": "Heart failure",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Heart failure can cause a cough that produces pink mucus."
+    },
+    {
+        "source": "Healthcare professional",
+        "relationship": "performs",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Healthcare professionals can perform tests to determine whether symptoms are caused by heart failure or another condition."
+    },
+    {
+        "source": "Lifestyle changes",
+        "relationship": "improve",
+        "target": "quality",
+        "confidence": 1.0,
+        "context": "Lifestyle changes can improve quality of life for people with heart failure."
+    },
+    {
+        "source": "Regular exercise",
+        "relationship": "improve",
+        "target": "quality",
+        "confidence": 1.0,
+        "context": "Regular exercise may improve quality of life for some people with heart failure."
+    },
+    {
+        "source": "Stress management",
+        "relationship": "improve",
+        "target": "quality",
+        "confidence": 1.0,
+        "context": "Stress management may improve quality of life for people with heart failure."
+    },
+    {
+        "source": "Age",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Age can increase the risk of high blood pressure."
+    },
+    {
+        "source": "Family history",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Family history can increase the risk of high blood pressure."
+    },
+    {
+        "source": "diabete",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Diabetes can increase the risk of high blood pressure."
+    },
+    {
+        "source": "Kidney problems",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Kidney problems can increase the risk of high blood pressure."
+    },
+    {
+        "source": "High blood pressure",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "High blood pressure can increase the risk of heart attack."
+    },
+    {
+        "source": "High blood pressure",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "High blood pressure can increase the risk of stroke."
+    },
+    {
+        "source": "Regular blood pressure check",
+        "relationship": "track",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Regular blood pressure checks can track changes."
+    },
+    {
         "source": "emergency department",
         "relationship": "treat",
         "target": "",
@@ -26,6 +712,104 @@
         "target": "",
         "confidence": 0.95,
         "context": "The emergency department treats patients with serious injuries, accidents, heart attacks, strokes, burns, poisoning, and other life-threatening conditions."
+    },
+    {
+        "source": "kidney",
+        "relationship": "remove",
+        "target": "",
+        "confidence": 1.0,
+        "context": "The kidneys remove waste and extra fluid from the blood."
+    },
+    {
+        "source": "kidney",
+        "relationship": "remove",
+        "target": "",
+        "confidence": 1.0,
+        "context": "The kidneys remove waste from the body through urine."
+    },
+    {
+        "source": "chronic kidney disease",
+        "relationship": "cause",
+        "target": "problem",
+        "confidence": 1.0,
+        "context": "Advanced chronic kidney disease can cause sleep problems."
+    },
+    {
+        "source": "Protein",
+        "relationship": "use",
+        "target": "part",
+        "confidence": 1.0,
+        "context": "Protein in the urine can be used as part of kidney disease evaluation and staging."
+    },
+    {
+        "source": "- standing high blood pressure",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Long-standing high blood pressure can increase the risk of kidney disease."
+    },
+    {
+        "source": "diabete",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Diabetes can increase the risk of kidney disease."
+    },
+    {
+        "source": "Not drinking enough water",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Not drinking enough water can increase the risk of kidney stones."
+    },
+    {
+        "source": "High salt intake",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "High salt intake can increase the risk of kidney stones."
+    },
+    {
+        "source": "Some food",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Some foods can increase the risk of kidney stones."
+    },
+    {
+        "source": "Family history",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Family history can increase the risk of kidney stones."
+    },
+    {
+        "source": "Low blood pressure",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Low blood pressure can cause fainting."
+    },
+    {
+        "source": "healthcare",
+        "relationship": "find",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A healthcare professional can find the cause of low blood pressure."
+    },
+    {
+        "source": "Sitting down",
+        "relationship": "help",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Sitting down can help prevent a fall during dizziness."
+    },
+    {
+        "source": "",
+        "relationship": "help",
+        "target": "blood flow",
+        "confidence": 1.0,
+        "context": "Lying down can help improve blood flow to the brain."
     },
     {
         "source": "Common medical emergency",
@@ -61,5 +845,138 @@
         "target": "",
         "confidence": 1.0,
         "context": "Radiology departments conduct X-rays, CT scans, and MRI scans to identify fractures, internal injuries, and other medical conditions."
+    },
+    {
+        "source": "Oral rehydration solution",
+        "relationship": "replace",
+        "target": "",
+        "confidence": 0.95,
+        "context": "Oral rehydration solution can replace lost fluids and salts."
+    },
+    {
+        "source": "healthcare",
+        "relationship": "find",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A healthcare professional can find the cause of nausea."
+    },
+    {
+        "source": "healthcare",
+        "relationship": "find",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A healthcare professional can find the cause of vomiting."
+    },
+    {
+        "source": "Pneumonia",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Pneumonia can cause coughing."
+    },
+    {
+        "source": "Pneumonia",
+        "relationship": "cause",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Pneumonia can cause sweating."
+    },
+    {
+        "source": "Smoking",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Smoking can increase the risk of pneumonia."
+    },
+    {
+        "source": "Chronic lung problem",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Chronic lung problems can increase the risk of pneumonia."
+    },
+    {
+        "source": "weak immune system",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A weak immune system can increase the risk of pneumonia."
+    },
+    {
+        "source": "Early treatment",
+        "relationship": "reduce",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Early treatment can reduce the risk of complications."
+    },
+    {
+        "source": "Good hand hygiene",
+        "relationship": "reduce",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Good hand hygiene can reduce the spread of infections."
+    },
+    {
+        "source": "High blood pressure",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "High blood pressure can increase the risk of stroke."
+    },
+    {
+        "source": "diabete",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Diabetes can increase the risk of stroke."
+    },
+    {
+        "source": "Smoking",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Smoking can increase the risk of stroke."
+    },
+    {
+        "source": "High cholesterol",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "High cholesterol can increase the risk of stroke."
+    },
+    {
+        "source": "Heart problem",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Heart problems can increase the risk of stroke."
+    },
+    {
+        "source": "previous stroke",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "A previous stroke can increase the risk of another stroke."
+    },
+    {
+        "source": "Sexual activity",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Sexual activity can increase the risk of a UTI."
+    },
+    {
+        "source": "Some medical condition",
+        "relationship": "increase",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Some medical conditions can increase the risk of a UTI."
+    },
+    {
+        "source": "from front to back",
+        "relationship": "reduce",
+        "target": "",
+        "confidence": 1.0,
+        "context": "Wiping from front to back can reduce the spread of bacteria."
     }
 ]

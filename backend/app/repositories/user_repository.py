@@ -40,6 +40,20 @@ class UserRepository:
 
                     MERGE (u)-[:HELPS_WITH]->(s)
                 """
+        self.update_original_query = """
+                    MERGE (u:User {user_id: $user_id})
+                    SET
+                        u.name = $name,
+                        u.helper = true
+
+                    WITH u
+
+                    UNWIND $preferences AS pref
+
+                    MERGE (s:Entity {name: pref})
+
+                    MERGE (u)-[:HELPS_ORIGINAL_WITH]->(s)
+                """
         self.get_user_query = """
                     MATCH (u:User {
                     user_id: $user_id
@@ -92,6 +106,7 @@ class UserRepository:
         print(final_pref,"final_pref- array--")     
         try:
             records, summary,keys=self.driver.execute_query(self.update_query,user_id=user.id,name=user.name,preferences = final_pref,database_="913033d2")
-            return final_pref
+            record_original,summary_original,keys_original = self.driver.execute_query(self.update_original_query,user_id=user.id,name=user.name,preferences = preferences,database_="913033d2")
+            return [preferences,final_pref]
         except Exception as e:
             return e

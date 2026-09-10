@@ -26,9 +26,18 @@ class MatchingService:
                                 WHERE e.name IN $preferences
                                 RETURN u, collect(e.name) AS matched_preferences
                                   """
+        self.fetch_original_help_query = """
+                                MATCH (u:User)-[:HELPS_ORIGINAL_WITH]->(e:Entity)
+                                WHERE u.name == $helper
+                                RETURN u, collect(e.name) AS original_preferences
+                                  """
      
 
     def find_best_helper(self, recommendation: str) -> list[Recommendation]:
-
+        print(recommendation,"recommendation in best helper---")
         records,summary,keys = self.driver.execute_query(self.fetch_helper_query,preferences = [recommendation],database_="913033d2")
+        print(records,"records-----")
+        return records
+    def find_original_helps(self,helper:list):
+        records,summary,keys = self.driver.execute_query(self.fetch_original_help_query,helper = helper,database_="913033d2")
         return records

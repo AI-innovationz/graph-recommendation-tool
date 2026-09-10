@@ -1,0 +1,271 @@
+A headache is pain in the head or face.
+
+A headache can feel like pressure.
+
+A headache can feel throbbing, constant, sharp, or dull.
+
+Headaches can differ in severity, location, frequency, and type.
+
+Most headaches are not dangerous.
+
+Some headaches can be a sign of a serious medical condition.
+
+There are many types of headaches.
+
+Headaches are divided into primary headaches and secondary headaches.
+
+Primary headaches are not caused by another underlying medical condition.
+
+Tension headaches are a common type of primary headache.
+
+Migraines are a type of primary headache.
+
+Cluster headaches are a type of primary headache.
+
+New daily persistent headaches are a type of primary headache.
+
+Lifestyle factors can trigger primary headaches.
+
+Alcohol can trigger some headaches.
+
+Certain foods can trigger some headaches.
+
+Nicotine can trigger headaches.
+
+Lack of sleep can trigger headaches.
+
+Changes in sleep can trigger headaches.
+
+Poor posture can trigger headaches.
+
+Physical activity can trigger some headaches.
+
+Skipping meals can trigger headaches.
+
+Coughing can trigger some headaches.
+
+Sneezing can trigger some headaches.
+
+Straining can trigger some headaches.
+
+Strong laughing or crying can trigger some headaches.
+
+Secondary headaches are caused by an underlying medical condition.
+
+Dehydration can cause a secondary headache.
+
+Sinus problems can cause a secondary headache.
+
+Medication overuse can cause secondary headaches.
+
+A spinal fluid leak can cause a spinal headache.
+
+A thunderclap headache is a sudden and extremely severe headache.
+
+A thunderclap headache reaches its highest intensity very quickly.
+
+A thunderclap headache requires immediate medical attention.
+
+A thunderclap headache can be associated with a head injury.
+
+A thunderclap headache can be associated with bleeding in the brain.
+
+A sudden severe increase in blood pressure can be associated with a thunderclap headache.
+
+A migraine is a neurological condition.
+
+A migraine commonly causes throbbing pain on one side of the head.
+
+Physical activity can make migraine pain worse.
+
+Light can make migraine symptoms worse.
+
+Sound can make migraine symptoms worse.
+
+Smells can make migraine symptoms worse.
+
+Migraines can last for several hours or longer.
+
+Headaches can run in families.
+
+Migraines can have a hereditary component.
+
+Certain foods can trigger headaches.
+
+Caffeine can trigger some headaches.
+
+Alcohol can trigger some headaches.
+
+Strong odors can trigger headaches.
+
+Allergens can trigger headaches.
+
+Secondhand smoke can trigger headaches.
+
+Stress can trigger headaches.
+
+Lack of sleep can trigger headaches.
+
+A sudden new severe headache requires immediate medical attention.
+
+A headache with fever requires medical evaluation.
+
+A headache with shortness of breath requires medical evaluation.
+
+A headache with a stiff neck requires immediate medical attention.
+
+A headache with a rash requires medical evaluation.
+
+A headache after a head injury requires immediate medical attention.
+
+A new type of headache after age 55 requires medical evaluation.
+
+A headache with weakness requires immediate medical attention.
+
+A headache with dizziness requires medical evaluation.
+
+A headache with sudden loss of balance requires immediate medical attention.
+
+A headache with numbness or tingling requires immediate medical attention.
+
+A headache with paralysis requires immediate medical attention.
+
+A headache with difficulty speaking requires immediate medical attention.
+
+A headache with confusion requires immediate medical attention.
+
+A headache with a seizure requires immediate medical attention.
+
+A headache with personality changes requires immediate medical attention.
+
+A headache with vision changes requires immediate medical attention.
+
+Blurred vision with a headache requires medical evaluation.
+
+Double vision with a headache requires medical evaluation.
+
+Blind spots with a headache require medical evaluation.
+
+Frequent headaches should be discussed with a healthcare provider.
+
+Severe headaches should be evaluated by a healthcare provider.
+
+A headache occurring once or more every week should be discussed with a healthcare provider.
+
+Headaches that keep getting worse should be medically evaluated.
+
+Headaches that do not go away should be medically evaluated.
+
+Needing pain medication every day for headaches should be discussed with a healthcare provider.
+
+Needing over-the-counter headache medication more than two to three times per week should be discussed with a healthcare provider.
+
+Headaches triggered by physical exertion should be medically evaluated.
+
+Headaches triggered by coughing should be medically evaluated.
+
+Headaches triggered by bending should be medically evaluated.
+
+Headaches triggered by strenuous activity should be medically evaluated.
+
+A recent change in an existing headache pattern should be discussed with a healthcare provider.
+
+A healthcare provider may ask when the headache started.
+
+A healthcare provider may ask how the headache feels.
+
+A healthcare provider may ask how often headaches occur.
+
+A healthcare provider may ask how long each headache lasts.
+
+A healthcare provider may ask how severe the headache is.
+
+A healthcare provider may ask about foods that trigger headaches.
+
+A healthcare provider may ask about drinks that trigger headaches.
+
+A healthcare provider may ask about possible headache triggers.
+
+A healthcare provider may ask about caffeine consumption.
+
+A healthcare provider may ask about stress levels.
+
+A healthcare provider may ask about sleep habits.
+
+A healthcare provider may ask whether physical activity makes the headache worse.
+
+A healthcare provider may ask about headaches in the family.
+
+A healthcare provider may ask about symptoms between headaches.
+
+Headache evaluation can include a physical examination.
+
+Headache evaluation can include a neurological examination.
+
+A healthcare provider may check for fever during headache evaluation.
+
+A healthcare provider may check for signs of infection.
+
+A healthcare provider may check blood pressure.
+
+A healthcare provider may check for muscle weakness.
+
+A healthcare provider may check for numbness or tingling.
+
+A healthcare provider may check for balance problems.
+
+A healthcare provider may check for vision problems.
+
+A healthcare provider may check for confusion.
+
+A healthcare provider may check for seizures.
+
+A healthcare provider may check for dizziness.
+
+A healthcare provider may check for nausea and vomiting.
+
+A CT scan may be used when a serious underlying cause of headache is suspected.
+
+An MRI may be used when a serious underlying cause of headache is suspected.
+
+Treatment for headaches depends on the type and cause.
+
+Identifying headache triggers can help reduce the frequency of headaches.
+
+Keeping a headache log can help identify headache triggers.
+
+Stress management can help with some headaches.
+
+Relaxation techniques can help manage stress-related headaches.
+
+Some occasional mild headaches can be treated at home.
+
+Heat or cold packs can help relieve some headaches.
+
+Stretching exercises can help with some headaches.
+
+Massage of the head, neck, or back can help with some headaches.
+
+Resting in a dark and quiet room can help with some headaches.
+
+Taking a walk may help with some headaches.
+
+Over-the-counter pain relievers can help with occasional tension headaches.
+
+Frequent use of pain medication can cause medication-overuse headaches.
+
+Frequent or severe headaches may require prescription medication.
+
+Treating an underlying medical condition can improve secondary headaches.
+
+Headache triggers are different for different people.
+
+Avoiding known headache triggers may help prevent headaches.
+
+Lack of sleep can be reduced as a headache trigger by maintaining healthy sleep habits.
+
+Strong scents can be reduced as a headache trigger by avoiding perfumes or scented products.
+
+If headaches interfere with daily activities, a healthcare provider should be consulted.
+
+If headaches affect mood or daily functioning, a healthcare provider should be consulted.

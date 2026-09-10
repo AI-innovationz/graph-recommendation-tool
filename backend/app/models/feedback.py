@@ -5,3 +5,8 @@ class FeedbackItem(BaseModel):
     final_node: str
     score: float
     feedback: int
+    
+class FeedbackObj(BaseModel):
+    feedbackBody: list[FeedbackItem]
+
+

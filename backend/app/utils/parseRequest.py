@@ -3,11 +3,11 @@ from app.nlp.relation_extractor import RelationExtractor
 from app.nlp.sentence_splitter import SentenceSplitter
 nlp = spacy.load('en_core_web_sm')
 def parse_request(req:list,request:str):
-    ignore_list = ['I','You','My','Father','Mother','Friend','Sister','Grandfather','Grandmother','Neighbor']
+    ignore_list = ['i','you','my','father','mother','friend','sister','grandfather','grandmother','neighbor']
     doc = nlp(request)
     for noun in doc.noun_chunks:
         print(noun,"NOUN-----")
-        if str(noun) in ignore_list:
+        if str(noun).lower() in ignore_list:
             continue
         req.append(str(noun))
 

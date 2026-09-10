@@ -5,6 +5,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.user_routes import create_user_router 
 from app.api.request_routes import create_req_router
 from app.knowledge.data_fetch import DataFetch
+from app.knowledge.vector_index import VectorIndex
+from app.nlp.embedding_service import EmbeddingService
 
 # Initialize your FastAPI Application
 app = FastAPI(
@@ -22,11 +24,14 @@ app.add_middleware(
 
 # 1. Fetch the graph data once on application startup
 df = DataFetch()
+em = EmbeddingService()
+vi_instance = VectorIndex(em)
 graph_instance = df.fetch_data()
+vi_instance.build(graph_instance)
 
 # 2. Initialize routers via factory functions, passing the live graph reference
 user_router = create_user_router(graph_instance)
-req_router = create_req_router(graph_instance)
+req_router = create_req_router(graph_instance,vi_instance)
 
 # 3. Mount the dynamic routers into your application
 app.include_router(user_router, prefix="/api/v1")
