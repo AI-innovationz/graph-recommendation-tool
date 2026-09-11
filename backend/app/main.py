@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# Import factory functions instead of static router instances....
+# Import factory functions instead of static router instances...
 from app.api.user_routes import create_user_router 
 from app.api.request_routes import create_req_router
 from app.knowledge.data_fetch import DataFetch
