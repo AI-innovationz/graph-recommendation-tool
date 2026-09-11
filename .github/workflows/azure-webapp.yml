@@ -11,8 +11,8 @@ permissions:
 
 env:
   AZURE_WEBAPP_NAME: community-helper-api-poushali
-  PYTHON_VERSION: '3.11'
   AZURE_RESOURCE_GROUP: medical_recommendation
+  PYTHON_VERSION: '3.11'
 
 jobs:
   build-and-deploy:
@@ -27,7 +27,7 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Prepare deployment package
+      - name: Install dependencies into package
         working-directory: backend
         run: |
           python -m pip install --upgrade pip
@@ -40,21 +40,21 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Configure Azure Web App
+      - name: Configure Web App
         uses: azure/cli@v2
         with:
           inlineScript: |
-            az webapp config set \
-              --resource-group "${{ env.AZURE_RESOURCE_GROUP }}" \
-              --name "${{ env.AZURE_WEBAPP_NAME }}" \
-              --startup-file "gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app"
-
             az webapp config appsettings set \
               --resource-group "${{ env.AZURE_RESOURCE_GROUP }}" \
               --name "${{ env.AZURE_WEBAPP_NAME }}" \
               --settings SCM_DO_BUILD_DURING_DEPLOYMENT=false
 
-      - name: Deploy backend to Azure Web App
+            az webapp config set \
+              --resource-group "${{ env.AZURE_RESOURCE_GROUP }}" \
+              --name "${{ env.AZURE_WEBAPP_NAME }}" \
+              --startup-file "gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app"
+
+      - name: Deploy backend
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
