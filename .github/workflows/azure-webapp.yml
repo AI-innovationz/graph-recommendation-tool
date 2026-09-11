@@ -44,6 +44,5 @@ jobs:
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           package: ./backend
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          # 👇 Injects App Service configuration settings seamlessly without utilizing Azure CLI
-          slot-name: 'production'
+          # 👇 Directs the deployment directly to your app scope, bypassing the 404 lookup bug
+          resource-group-name: medical_recommendation
