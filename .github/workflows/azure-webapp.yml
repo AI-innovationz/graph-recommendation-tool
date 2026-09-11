@@ -38,12 +38,15 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
+          allow-no-subscriptions: true
 
       - name: Configure Azure App Service
         uses: azure/cli@v2
         with:
           inlineScript: |
+            # Forces the CLI to lock onto your subscription before modifying app settings
+            az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
             az webapp config appsettings set \
               --resource-group medical_recommendation \
               --name ${{ env.AZURE_WEBAPP_NAME }} \
@@ -59,3 +62,5 @@ jobs:
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           package: ./backend
+          # Bypasses the root tenant check by deploying directly to this scope
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
