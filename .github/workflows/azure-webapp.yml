@@ -33,12 +33,15 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt --target .python_packages/lib/site-packages
 
-      - name: Verify dependencies
+          echo "Checking installed packages..."
+          ls -la .python_packages/lib/site-packages | head -50
+
+      - name: Verify packaged dependencies
         working-directory: backend
         run: |
-          python -c "import uvicorn; print('Uvicorn:', uvicorn.__version__)"
-          python -c "import fastapi; print('FastAPI:', fastapi.__version__)"
-          python -c "import gunicorn; print('Gunicorn:', gunicorn.__version__)"
+          PYTHONPATH="$PWD/.python_packages/lib/site-packages" python -c "import uvicorn; print('Uvicorn:', uvicorn.__version__)"
+          PYTHONPATH="$PWD/.python_packages/lib/site-packages" python -c "import fastapi; print('FastAPI:', fastapi.__version__)"
+          PYTHONPATH="$PWD/.python_packages/lib/site-packages" python -c "import gunicorn; print('Gunicorn:', gunicorn.__version__)"
 
       - name: Login to Azure
         uses: azure/login@v3
@@ -66,3 +69,4 @@ jobs:
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           package: ./backend
+
