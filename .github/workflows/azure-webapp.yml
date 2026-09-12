@@ -27,11 +27,28 @@ jobs:
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Verify requirements.txt
+      - name: Install dependencies into package
         working-directory: backend
         run: |
-          echo "===== requirements.txt ====="
-          cat requirements.txt
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt --target .python_packages/lib/site-packages
+
+          echo "Checking packaged dependencies..."
+          test -f .python_packages/lib/site-packages/uvicorn/__init__.py
+          test -f .python_packages/lib/site-packages/gunicorn/__init__.py
+
+          echo "Uvicorn package found:"
+          ls -la .python_packages/lib/site-packages/uvicorn | head
+
+          echo "Gunicorn package found:"
+          ls -la .python_packages/lib/site-packages/gunicorn | head
+
+      - name: Verify packaged dependencies
+        working-directory: backend
+        run: |
+          PYTHONPATH="$PWD/.python_packages/lib/site-packages" python -c "import uvicorn; print('Uvicorn:', uvicorn.__version__)"
+          PYTHONPATH="$PWD/.python_packages/lib/site-packages" python -c "import fastapi; print('FastAPI:', fastapi.__version__)"
+          PYTHONPATH="$PWD/.python_packages/lib/site-packages" python -c "import gunicorn; print('Gunicorn:', gunicorn.__version__)"
 
       - name: Login to Azure
         uses: azure/login@v3
@@ -48,8 +65,8 @@ jobs:
               --resource-group "${{ env.AZURE_RESOURCE_GROUP }}" \
               --name "${{ env.AZURE_WEBAPP_NAME }}" \
               --settings \
-                SCM_DO_BUILD_DURING_DEPLOYMENT=true \
-                ENABLE_ORYX_BUILD=true
+                SCM_DO_BUILD_DURING_DEPLOYMENT=false \
+                PYTHONPATH="/home/site/wwwroot/.python_packages/lib/site-packages"
 
             az webapp config set \
               --resource-group "${{ env.AZURE_RESOURCE_GROUP }}" \
