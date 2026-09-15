@@ -33,3 +33,7 @@ PyYAML==6.0.3
 
 # Utilities
 tqdm==4.68.4
+
+azure-storage-blob==12.30.1
+isodate==0.7.2
+azure-core==1.41.0
