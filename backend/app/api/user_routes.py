@@ -8,7 +8,7 @@ from app.schemas.become_helper_request_schema import BecomeHelperRequest
 # Initialize the repository globally or inside the factory function
 user_repo = UserRepository()
 
-def create_user_router(graph) -> APIRouter:
+def create_user_router(graph,vi) -> APIRouter:
     # 1. Initialize the router inside the function scope
     router = APIRouter(
         prefix="/users",
@@ -74,7 +74,8 @@ def create_user_router(graph) -> APIRouter:
         # print(f"Graph successfully accessed inside become_helper: {graph}")
         
         print(user, "user in api")
-        pref_list = user_repo.update_user(user,graph)
+        pref_list = user_repo.update_user(user,graph,vi)
+        pref_list[0] = list(set(pref_list[0]))
 
         return {
             "message": "Role changed to Helper",

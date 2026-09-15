@@ -27,10 +27,10 @@ df = DataFetch()
 em = EmbeddingService()
 vi_instance = VectorIndex(em)
 graph_instance = df.fetch_data()
-vi_instance.build(graph_instance)
+vi_instance.load_from_azure('','','')
 
 # 2. Initialize routers via factory functions, passing the live graph reference
-user_router = create_user_router(graph_instance)
+user_router = create_user_router(graph_instance,vi_instance)
 req_router = create_req_router(graph_instance,vi_instance)
 
 # 3. Mount the dynamic routers into your application

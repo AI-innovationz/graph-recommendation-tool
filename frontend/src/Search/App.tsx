@@ -1,27 +1,41 @@
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';  
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';  
-import CircularProgress from '@mui/material/CircularProgress';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import Divider from '@mui/material/Divider';
+import {
+  Box,
+  TextField,
+  InputAdornment,
+  IconButton,
+  Button,
+  Typography,
+  CircularProgress,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Divider,
+  Chip,
+  Paper,
+  Avatar,
+  Stack,
+} from "@mui/material";
 
-import SearchIcon from '@mui/icons-material/Search';
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
-import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
-import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from "@mui/icons-material/Search";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
+import CloseIcon from "@mui/icons-material/Close";
+import VolunteerActivismOutlinedIcon from "@mui/icons-material/VolunteerActivismOutlined";
+import LocalGroceryStoreOutlinedIcon from "@mui/icons-material/LocalGroceryStoreOutlined";
+import MedicationOutlinedIcon from "@mui/icons-material/MedicationOutlined";
+import DirectionsCarOutlinedIcon from "@mui/icons-material/DirectionsCarOutlined";
+import EmergencyOutlinedIcon from "@mui/icons-material/EmergencyOutlined";
+import PeopleIcon from "@mui/icons-material/People";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-import { useState, useEffect, JSXElementConstructor, ReactElement, ReactNode, ReactPortal } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-import './App.css';
+import "./App.css";
 
 type Helper = {
   original_help: any;
@@ -44,56 +58,67 @@ type HelpersMap = {
   [recommendation: string]: Helper[];
 };
 
-type LikeMap={
-  [recommendation:string]:boolean
-}
+type LikeMap = {
+  [recommendation: string]: boolean;
+};
+
+const quickHelpOptions = [
+  {
+    label: "Grocery",
+    icon: <LocalGroceryStoreOutlinedIcon fontSize="small" />,
+    prompt: "I need help getting groceries",
+  },
+  {
+    label: "Medicine",
+    icon: <MedicationOutlinedIcon fontSize="small" />,
+    prompt: "I need help getting medicine",
+  },
+  {
+    label: "Transportation",
+    icon: <DirectionsCarOutlinedIcon fontSize="small" />,
+    prompt: "I need transportation help",
+  },
+  {
+    label: "Emergency",
+    icon: <EmergencyOutlinedIcon fontSize="small" />,
+    prompt: "I need help with an emergency",
+  },
+];
 
 export default function Search() {
-  const [text, setText] = useState<string>('');
-  const [searchText, setSearchText] = useState<string>('');
+  const [text, setText] = useState<string>("");
+  const [searchText, setSearchText] = useState<string>("");
 
   const [searchResult, setSearchResult] = useState<string[]>([]);
 
   const [loadingMessage, setLoadingMessage] =
-    useState<string>('Thinking...');
+    useState<string>("Finding help...");
 
   const [loading, setLoading] = useState<boolean>(false);
 
   const [searchTrigger, setSearchTrigger] = useState<number>(0);
- const [searchRec, setSearchRec] = useState<[string[], FeedbackItem[]]>([[], []]);
 
-  /*
-   * Stores helpers for each recommendation.
-   *
-   * Example:
-   *
-   * {
-   *   ambulance: [helper1, helper2],
-   *   medicine: [helper3]
-   * }
-   */
+  const [searchRec, setSearchRec] = useState<
+    [string[], FeedbackItem[]]
+  >([[], []]);
+
   const [helpers, setHelpers] = useState<HelpersMap>({});
 
-  /*
-   * Which recommendation is currently being checked
-   * for helpers.
-   */
   const [helperLoading, setHelperLoading] =
     useState<string | null>(null);
 
-  /*
-   * Modal state
-   */
   const [selectedRecommendation, setSelectedRecommendation] =
     useState<string | null>(null);
 
-  const [liked,setLiked] = useState<LikeMap>({})
-  const [dislike,setDisliked] = useState<LikeMap>({})
- 
+  const [liked, setLiked] = useState<LikeMap>({});
+  const [dislike, setDisliked] = useState<LikeMap>({});
 
   /*
-   * Search button / Enter
+   * ---------------------------------------------------------
+   * SEARCH
+   * ---------------------------------------------------------
    */
+
   const handleClick = () => {
     const trimmedText = text.trim();
 
@@ -105,109 +130,111 @@ export default function Search() {
     setSearchTrigger((prev) => prev + 1);
   };
 
-  /*
-   * Get helpers for ONE recommendation.
-   *
-   * Backend response:
-   *
-   * [
-   *   [
-   *     {
-   *       helper: true,
-   *       user_id: "...",
-   *       phone: "...",
-   *       latitude: 23.67,
-   *       name: "Poushali2",
-   *       longitude: 89.97
-   *     },
-   *     ["ambulance"]
-   *   ]
-   * ]
-   */
- 
+  const handleQuickHelp = (prompt: string) => {
+    setText(prompt);
 
-  /*
-   * Open helper modal
-   */
-  const handleFeedback = async(recommendation:string,fback:number)=>{
-       console.log(searchRec[0],"searchrec- 1----")
-       let feedbackBody:FeedbackItem [] = []
-       try{
-        searchRec[1]?.forEach((element: FeedbackItem) => {
-          console.log(element,"element---")
-          if(searchRec[0]?.includes(element.final_node)){
-            if(element.final_node === recommendation){
-              element.feedback = fback
-            }
-            console.log(element,"element----")
-            feedbackBody.push(element)
-            
-          }
-          
-        });
-      }catch(e){
-        console.log(e,"error found ------")
-      }
-        console.log(feedbackBody,"feedbackbody in handlefeedback")
-        const feedback = await axios.post(`http://localhost:8000/api/v1/requests/feedback`,{feedbackBody})
-
-  }
-
-  const handleOpenHelpers = async(recommendation: string) => {
-    setSelectedRecommendation(recommendation);
-
-    await handleFeedback(recommendation,0)
-
-  
+    setTimeout(() => {
+      setSearchText(prompt);
+      setSearchTrigger((prev) => prev + 1);
+    }, 0);
   };
 
   /*
-   * Close helper modal
+   * ---------------------------------------------------------
+   * FEEDBACK
+   * ---------------------------------------------------------
    */
+
+  const handleFeedback = async (
+    recommendation: string,
+    fback: number
+  ) => {
+    const feedbackBody: FeedbackItem[] = [];
+
+    try {
+      searchRec[1]?.forEach((element: FeedbackItem) => {
+        if (searchRec[0]?.includes(element.final_node)) {
+          const feedbackItem = {
+            ...element,
+          };
+
+          if (feedbackItem.final_node === recommendation) {
+            feedbackItem.feedback = fback;
+          }
+
+          feedbackBody.push(feedbackItem);
+        }
+      });
+
+      await axios.post(
+        "http://localhost:8000/api/v1/requests/feedback",
+        { feedbackBody }
+      );
+    } catch (error) {
+      console.error("Feedback failed:", error);
+    }
+  };
+
+  const handleLike = async (recommendation: string) => {
+    setLiked((prev) => ({
+      ...prev,
+      [recommendation]: !prev[recommendation],
+    }));
+
+    setDisliked((prev) => ({
+      ...prev,
+      [recommendation]: false,
+    }));
+
+    await handleFeedback(recommendation, 1);
+  };
+
+  const handleDislike = async (recommendation: string) => {
+    setDisliked((prev) => ({
+      ...prev,
+      [recommendation]: !prev[recommendation],
+    }));
+
+    setLiked((prev) => ({
+      ...prev,
+      [recommendation]: false,
+    }));
+
+    await handleFeedback(recommendation, -1);
+  };
+
+  /*
+   * ---------------------------------------------------------
+   * HELPER MODAL
+   * ---------------------------------------------------------
+   */
+
+  const handleOpenHelpers = async (recommendation: string) => {
+    setSelectedRecommendation(recommendation);
+
+    await handleFeedback(recommendation, 0);
+  };
+
   const handleCloseHelpers = () => {
     setSelectedRecommendation(null);
   };
 
-const handleLike = async (recommendation: string) => {
-setLiked(prev => ({
-  ...prev,
-  [recommendation]: !prev[recommendation],
-}));
-
-setDisliked(prev => ({
-  ...prev,
-  [recommendation]: false,
-}));
-
-  await handleFeedback(recommendation, 1);
-};
-
-const handleDislike = async (recommendation: string) => {
-  setDisliked(prev => ({
-  ...prev,
-  [recommendation]: !prev[recommendation],
-}));
-
-setLiked(prev => ({
-  ...prev,
-  [recommendation]: false,
-}));
-
-  await handleFeedback(recommendation, -1);
-};
   /*
-   * AI-style search loading messages
+   * ---------------------------------------------------------
+   * LOADING MESSAGES
+   * ---------------------------------------------------------
    */
+
   useEffect(() => {
     if (!loading) {
       return;
     }
 
     const messages = [
-      'Thinking...',
-      'Finding the best recommendations...',
-      'Checking relevant helpers...',
-      'Ranking matches...',
+      "Understanding your request...",
+      "Finding relevant recommendations...",
+      "Checking available helpers...",
+      "Ranking the best matches...",
     ];
 
     let index = 0;
@@ -225,8 +252,11 @@ setLiked(prev => ({
   }, [loading]);
 
   /*
-   * Search API
+   * ---------------------------------------------------------
+   * SEARCH API
+   * ---------------------------------------------------------
    */
+
   useEffect(() => {
     if (!searchText) {
       return;
@@ -236,17 +266,17 @@ setLiked(prev => ({
       try {
         setLoading(true);
 
-        // Clear previous results and helpers
         setSearchResult([]);
         setHelpers({});
 
         /*
          * Create request
          */
+        console.log(searchText,"new search text--")
         const response = await axios.post(
-          'http://localhost:8000/api/v1/requests',
+          "http://localhost:8000/api/v1/requests",
           {
-            user_id: '',
+            user_id: "",
             request_type: [],
             description: searchText,
             latitude: 23.68,
@@ -254,7 +284,7 @@ setLiked(prev => ({
           },
           {
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
           }
         );
@@ -266,10 +296,7 @@ setLiked(prev => ({
         const reqID = response.data?.request_id;
 
         if (!reqID) {
-          console.error(
-            'Request ID not found:',
-            response.data
-          );
+          console.error("Request ID not found:", response.data);
           return;
         }
 
@@ -279,52 +306,47 @@ setLiked(prev => ({
         const searchRes = await axios.post(
           `http://localhost:8000/api/v1/requests/${reqID}/recommendations`
         );
-        
-        
+
         if (searchRes.status !== 200) {
           return;
         }
-          console.log(
-          'Recommendation response:',
+
+        console.log(
+          "Recommendation response:",
           searchRes.data
         );
-        let feedbackBody:FeedbackItem [] = []
-        setSearchRec(searchRes.data)
-        console.log(searchRes.data,"searched data----")
-        searchRes.data[1]?.forEach((element: FeedbackItem) => {
-          console.log(element.final_node,"FINAL NODE----")
-          if(searchRes.data[0]?.includes(element.final_node)){
-            console.log("found-------")
-            element.feedback = 0
-            feedbackBody.push(element)
-            
-          }
-        
-        
-          
-        });
 
-        console.log(feedbackBody,"feedbackBody------>")
-        const feedback = await axios.post(`http://localhost:8000/api/v1/requests/feedback`,{feedbackBody})
-        
-
+        setSearchRec(searchRes.data);
 
         /*
-         * Support both:
-         *
-         * [
-         *   "ambulance",
-         *   "medicine"
-         * ]
-         *
-         * and:
-         *
-         * [
-         *   [
-         *     "ambulance",
-         *     "medicine"
-         *   ]
-         * ]
+         * Initialize feedback
+         */
+        const feedbackBody: FeedbackItem[] = [];
+
+        searchRes.data[1]?.forEach(
+          (element: FeedbackItem) => {
+            if (
+              searchRes.data[0]?.includes(
+                element.final_node
+              )
+            ) {
+              const feedbackItem = {
+                ...element,
+                feedback: 0,
+              };
+
+              feedbackBody.push(feedbackItem);
+            }
+          }
+        );
+
+        await axios.post(
+          "http://localhost:8000/api/v1/requests/feedback",
+          { feedbackBody }
+        );
+
+        /*
+         * Recommendations
          */
         const recommendations = Array.isArray(
           searchRes.data?.[0]
@@ -334,429 +356,824 @@ setLiked(prev => ({
 
         const formattedResults = recommendations.filter(
           (item: unknown): item is string =>
-            typeof item === 'string'
+            typeof item === "string"
         );
-        console.log(formattedResults,"formattd result---------")
+
         setSearchResult(formattedResults);
 
         /*
-         * IMPORTANT:
-         *
-         * Check helper availability for every recommendation.
-         *
-         * This allows us to decide whether the
-         * "Tap to see Helpers" button should exist.
+         * Find helpers for every recommendation
          */
         const helperResults: HelpersMap = {};
-        const likeRes:LikeMap={}
-        const dislikeRes:LikeMap={}
+        const likeRes: LikeMap = {};
+        const dislikeRes: LikeMap = {};
+
         await Promise.all(
-          formattedResults.map(async (recommendation:string) => {
-            try {
-              const helperResponse = await axios.post(
-                'http://localhost:8000/api/v1/requests/match',
-                {
-                  request: recommendation,
-                }
-              );
+          formattedResults.map(
+            async (rec: string) => {
+              try {
+                const helperResponse = await axios.post(
+                  "http://localhost:8000/api/v1/requests/match",
+                  {
+                    request: rec,
+                  }
+                );
 
-              likeRes[recommendation]=false
-              dislikeRes[recommendation]=false
-              const helperList: Helper[] =
-                Array.isArray(helperResponse.data)
-                  ? helperResponse.data
-                      .map((item: any) => item?.[0])
-                      .filter(
-                        (helper: any): helper is Helper =>
-                          helper &&
-                          typeof helper === 'object' &&
-                          helper.helper === true
-                      )
-                  : [];
+                likeRes[rec] = false;
+                dislikeRes[rec] = false;
 
-              helperResults[recommendation] = helperList;
+                const helperList: Helper[] =
+                  Array.isArray(helperResponse.data)
+                    ? helperResponse.data
+                        .map((item: any) => item?.[0])
+                        .filter(
+                          (
+                            helper: any
+                          ): helper is Helper =>
+                            helper &&
+                            typeof helper === "object" &&
+                            helper.helper === true
+                        )
+                    : [];
 
-            } catch (error) {
-              console.error(
-                `Failed to find helpers for ${recommendation}:`,
-                error
-              );
+                helperResults[rec] =
+                  helperList;
+              } catch (error) {
+                console.error(
+                  `Failed to find helpers for ${rec}:`,
+                  error
+                );
 
-              helperResults[recommendation] = [];
+                helperResults[rec] = [];
+              }
             }
-          })
+          )
         );
 
         setHelpers(helperResults);
-        setLiked(likeRes)
-        setDisliked(dislikeRes)
+        setLiked(likeRes);
+        setDisliked(dislikeRes);
       } catch (error) {
-        console.error('Search failed:', error);
+        console.error("Search failed:", error);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [searchTrigger, searchText]);
+  }, [searchTrigger]);
 
   /*
-   * Helpers currently selected in modal
+   * ---------------------------------------------------------
+   * SELECTED HELPERS
+   * ---------------------------------------------------------
    */
+
   const selectedHelpers = selectedRecommendation
     ? helpers[selectedRecommendation] || []
     : [];
+
+  /*
+   * ---------------------------------------------------------
+   * RENDER
+   * ---------------------------------------------------------
+   */
 
   return (
     <>
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
-          alignItems: 'center',
-          justifyContent: 'center',
-          p: 3,
+          minHeight: "calc(100vh - 64px)",
+          background:
+            "linear-gradient(180deg, #f4f9fc 0%, #ffffff 70%)",
+          px: { xs: 2, sm: 3 },
+          py: { xs: 5, sm: 7 },
         }}
       >
-        {/* Search bar */}
-
-        <TextField
-          placeholder="Search..."
-          size="medium"
-          fullWidth
-          value={text}
+        <Box
           sx={{
-            maxWidth: 560,
-
-            '& .MuiOutlinedInput-root': {
-              borderRadius: 4,
-              height: 56,
-
-              '&:hover fieldset': {
-                borderColor: 'primary.main',
-              },
-
-              '&.Mui-focused fieldset': {
-                borderColor: 'primary.main',
-              },
-            },
+            width: "100%",
+            maxWidth: 920,
+            mx: "auto",
           }}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={handleClick}
-                    edge="end"
-                    aria-label="search"
-                    disabled={!text.trim() || loading}
-                    sx={{
-                      cursor: text.trim()
-                        ? 'pointer'
-                        : 'default',
+        >
+          {/* =================================================
+              HERO
+              ================================================= */}
 
-                      '&:hover': {
-                        backgroundColor: 'action.hover',
-                      },
-                    }}
-                  >
-                    <SearchIcon
-                      sx={{
-                        color: 'text.secondary',
-                      }}
-                    />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            },
-          }}
-          onChange={(e) => {
-            setText(e.target.value);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              e.preventDefault();
-              handleClick();
-            }
-          }}
-        />
-
-        {/* AI-style loading */}
-
-        {loading && (
-          <Box
-            sx={{
-              width: '100%',
-              maxWidth: 560,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 1,
-              mt: 1,
-              px: 1,
-              color: 'text.secondary',
-            }}
-          >
-            <Typography variant="body2">
-              {loadingMessage}
-            </Typography>
-
-            <Box
-              sx={{
-                display: 'flex',
-                gap: 0.3,
-              }}
-            >
-              <Box className="dot">•</Box>
-              <Box className="dot">•</Box>
-              <Box className="dot">•</Box>
-            </Box>
-          </Box>
-        )}
-
-        {/* Search results */}
-
-        {!loading && searchResult.length > 0 && (
-          <Box
-            sx={{
-              width: '100%',
-              maxWidth: 700,
-              mt: 3,
-
-              display: 'grid',
-
-              gridTemplateColumns: {
-                xs: '1fr',
-                sm: 'repeat(2, 1fr)',
-                md: 'repeat(3, 1fr)',
-              },
-
-              gap: 2,
-            }}
-          >
-            {searchResult.map((result, index) => {
-              const helperList = helpers[result] || [];
-
-              const hasHelpers = helperList.length > 0;
-
-              const isHelperLoading =
-                helperLoading === result;
-
-              return (
+          {!loading &&
+            searchResult.length === 0 && (
+              <Box
+                sx={{
+                  textAlign: "center",
+                  maxWidth: 720,
+                  mx: "auto",
+                  mb: 5,
+                }}
+              >
                 <Box
-                  key={`${result}-${index}`}
                   sx={{
-                    position: 'relative',
-                    minHeight: 110,
-                    borderRadius: '20px',
-                    overflow: 'hidden',
+                    width: 68,
+                    height: 68,
+                    mx: "auto",
+                    mb: 2.5,
+                    borderRadius: "20px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background:
+                      "linear-gradient(135deg, #0f4c5c, #176b7d)",
+                    color: "white",
+                    boxShadow:
+                      "0 10px 30px rgba(15,76,92,0.20)",
+                  }}
+                >
+                  <VolunteerActivismOutlinedIcon
+                    sx={{ fontSize: 34 }}
+                  />
+                </Box>
 
-                    backgroundColor: '#555',
-                    border: '1px solid silver',
-
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-
-                    transition: 'all 0.25s ease',
-
-                    '&:hover': {
-                      backgroundColor: '#707070',
-                      transform: 'translateY(-3px)',
-                      boxShadow:
-                        '0 6px 18px rgba(0,0,0,0.25)',
+                <Typography
+                  variant="h3"
+                  sx={{
+                    fontWeight: 700,
+                    color: "#12313d",
+                    fontSize: {
+                      xs: "2rem",
+                      sm: "2.6rem",
                     },
+                    letterSpacing: "-0.5px",
+                    mb: 1.5,
+                  }}
+                >
+                  What do you need help with?
+                </Typography>
 
-                    '&:hover .result-text': {
-                      opacity: 0.15,
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "text.secondary",
+                    fontSize: {
+                      xs: "0.98rem",
+                      sm: "1.08rem",
                     },
+                    lineHeight: 1.7,
+                    maxWidth: 620,
+                    mx: "auto",
+                  }}
+                >
+                  Tell us what you need and we'll find
+                  relevant community helpers who may be
+                  able to assist you.
+                </Typography>
+              </Box>
+            )}
 
-                    '&:hover .card-overlay': {
-                      opacity: 1,
+          {/* =================================================
+              SEARCH BOX
+              ================================================= */}
+
+          <Paper
+            elevation={0}
+            sx={{
+              maxWidth: 760,
+              mx: "auto",
+              p: { xs: 1, sm: 1.25 },
+              borderRadius: "18px",
+              border: "1px solid",
+              borderColor: "rgba(15,76,92,0.18)",
+              backgroundColor: "white",
+              boxShadow:
+                "0 10px 35px rgba(26,67,80,0.08)",
+            }}
+          >
+            <TextField
+              placeholder="Describe what you need help with..."
+              fullWidth
+              multiline
+              maxRows={3}
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+              variant="outlined"
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  border: "none",
+                  borderRadius: "14px",
+                  backgroundColor: "#f8fbfc",
+                  pr: 0.5,
+
+                  "& fieldset": {
+                    border: "none",
+                  },
+
+                  "&:hover fieldset": {
+                    border: "none",
+                  },
+
+                  "&.Mui-focused fieldset": {
+                    border: "none",
+                  },
+
+                  "& textarea": {
+                    padding: "14px 4px 14px 6px",
+                  },
+                },
+
+                "& .MuiInputBase-input::placeholder": {
+                  opacity: 0.65,
+                },
+              }}
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment
+                      position="start"
+                      sx={{
+                        alignSelf: "flex-start",
+                        mt: 1.2,
+                        ml: 1,
+                      }}
+                    >
+                      <SearchIcon
+                        sx={{
+                          color: "text.secondary",
+                        }}
+                      />
+                    </InputAdornment>
+                  ),
+
+                  endAdornment: (
+                    <InputAdornment
+                      position="end"
+                      sx={{
+                        alignSelf: "flex-end",
+                        mb: 0.8,
+                      }}
+                    >
+                      <IconButton
+                        onClick={handleClick}
+                        disabled={
+                          !text.trim() || loading
+                        }
+                        aria-label="search for help"
+                        sx={{
+                          width: 44,
+                          height: 44,
+                          borderRadius: "13px",
+                          backgroundColor:
+                            "#0f4c5c",
+                          color: "white",
+
+                          "&:hover": {
+                            backgroundColor:
+                              "#0b3c49",
+                          },
+
+                          "&.Mui-disabled": {
+                            backgroundColor:
+                              "#d9e3e7",
+                            color: "#9aaab0",
+                          },
+                        }}
+                      >
+                        {loading ? (
+                          <CircularProgress
+                            size={21}
+                            sx={{
+                              color: "white",
+                            }}
+                          />
+                        ) : (
+                          <ArrowForwardIcon />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                },
+              }}
+              onKeyDown={(e) => {
+                if (
+                  e.key === "Enter" &&
+                  !e.shiftKey
+                ) {
+                  e.preventDefault();
+                  handleClick();
+                }
+              }}
+            />
+          </Paper>
+
+          {/* =================================================
+              QUICK HELP
+              ================================================= */}
+
+          {!loading &&
+            searchResult.length === 0 && (
+              <Box
+                sx={{
+                  maxWidth: 760,
+                  mx: "auto",
+                  mt: 3,
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 600,
+                    mb: 1.2,
+                    textAlign: {
+                      xs: "center",
+                      sm: "left",
                     },
                   }}
                 >
-                  {/* Recommendation */}
+                  Or start with a common request
+                </Typography>
+
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  useFlexGap
+                  sx={{
+                    flexWrap: "wrap",
+                    justifyContent: {
+                      xs: "center",
+                      sm: "flex-start",
+                    },
+                  }}
+                >
+                  {quickHelpOptions.map((option) => (
+                    <Chip
+                      key={option.label}
+                      icon={option.icon}
+                      label={option.label}
+                      clickable
+                      onClick={() =>
+                        handleQuickHelp(option.prompt)
+                      }
+                      sx={{
+                        height: 42,
+                        px: 0.7,
+                        borderRadius: "12px",
+                        backgroundColor: "white",
+                        border: "1px solid",
+                        borderColor:
+                          "rgba(15,76,92,0.14)",
+                        color: "#294752",
+                        fontWeight: 500,
+
+                        "& .MuiChip-icon": {
+                          color: "#0f4c5c",
+                        },
+
+                        "&:hover": {
+                          backgroundColor:
+                            "#eef7f9",
+                          borderColor:
+                            "rgba(15,76,92,0.35)",
+                        },
+                      }}
+                    />
+                  ))}
+                </Stack>
+
+                <Box
+                  sx={{
+                    mt: 4,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 1,
+                    color: "text.secondary",
+                  }}
+                >
+                  <PeopleIcon
+                    sx={{ fontSize: 19 }}
+                  />
 
                   <Typography
-                    className="result-text"
-                    variant="body2"
+                    variant="caption"
+                    sx={{ fontSize: "0.78rem" }}
+                  >
+                    We'll match your request with
+                    relevant community helpers.
+                  </Typography>
+                </Box>
+              </Box>
+            )}
+
+          {/* =================================================
+              LOADING
+              ================================================= */}
+
+          {loading && (
+            <Box
+              sx={{
+                maxWidth: 760,
+                mx: "auto",
+                mt: 3,
+                p: 2.5,
+                borderRadius: 3,
+                backgroundColor: "white",
+                border: "1px solid",
+                borderColor:
+                  "rgba(15,76,92,0.12)",
+                display: "flex",
+                alignItems: "center",
+                gap: 1.5,
+              }}
+            >
+              <CircularProgress
+                size={22}
+                thickness={4}
+                sx={{
+                  color: "#0f4c5c",
+                }}
+              />
+
+              <Box>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    fontWeight: 600,
+                    color: "#294752",
+                  }}
+                >
+                  {loadingMessage}
+                </Typography>
+
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                >
+                  This may take a few moments.
+                </Typography>
+              </Box>
+            </Box>
+          )}
+
+          {/* =================================================
+              RESULTS HEADER
+              ================================================= */}
+
+          {!loading &&
+            searchResult.length > 0 && (
+              <Box
+                sx={{
+                  mt: 5,
+                  mb: 2.5,
+                  display: "flex",
+                  alignItems: {
+                    xs: "flex-start",
+                    sm: "center",
+                  },
+                  justifyContent: "space-between",
+                  gap: 2,
+                  flexDirection: {
+                    xs: "column",
+                    sm: "row",
+                  },
+                }}
+              >
+                <Box>
+                  <Typography
+                    variant="h5"
                     sx={{
-                      px: 2,
-                      color: 'white',
-                      fontWeight: 500,
-                      textAlign: 'center',
-                      transition:
-                        'opacity 0.25s ease',
+                      fontWeight: 700,
+                      color: "#12313d",
+                      mb: 0.5,
                     }}
                   >
-                    {result}
+                    We found some ways to help
                   </Typography>
 
-                  {/* Hover overlay */}
-
-                  <Box
-                    className="card-overlay"
-                    sx={{
-                      position: 'absolute',
-                      inset: 0,
-
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-
-                      px: 1.5,
-                      pr: 1.5,
-                      opacity: isHelperLoading
-                        ? 1
-                        : 0,
-
-                      transition:
-                        'opacity 0.25s ease',
-
-                      backgroundColor:
-                        'rgba(255,255,255,0.06)',
-                    }}
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
                   >
-                    {/* Like / Dislike */}
-
-                  <Box
-  className="card-overlay"
-  sx={{
-    position: 'absolute',
-    inset: 0,
-
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-
-    px: 0.75,
-
-    opacity: isHelperLoading ? 1 : 0,
-
-    transition: 'opacity 0.25s ease',
-
-    backgroundColor: 'rgba(255,255,255,0.06)',
-  }}
->
-  {/* Like / Dislike */}
-  <Box
-    sx={{
-      display: 'flex',
-      gap: 0,
-      flexShrink: 0,
-    }}
-  >
-    <IconButton
-      size="small"
-      aria-label="like"
-      onClick={(e) => {
-        e.stopPropagation();
-        handleLike(result)
-        console.log('Liked:', result);
-      }}
-      sx={{
-        color: 'white',
-        width: 32,
-        height: 32,
-        
-        '&:hover': {
-          color: '#81C784',
-          backgroundColor: 'rgba(255,255,255,0.15)',
-        },
-      }}
-    >
-      {liked[result]?<ThumbUpIcon sx={{ fontSize: 19 }}/>:<ThumbUpOutlinedIcon sx={{ fontSize: 19 }} /> }
-    </IconButton>
-
-    <IconButton
-      size="small"
-      aria-label="dislike"
-      onClick={(e) => {
-        e.stopPropagation();
-        console.log('Disliked:', result);
-        handleDislike(result)
-      }}
-      sx={{
-        color: 'white',
-        width: 32,
-        height: 32,
-
-        '&:hover': {
-          color: '#E57373',
-          backgroundColor: 'rgba(255,255,255,0.15)',
-        },
-      }}
-    >
-      {dislike[result]?<ThumbDownIcon sx={{ fontSize: 19 }}/>:<ThumbDownOutlinedIcon sx={{ fontSize: 19 }} /> }
-    </IconButton>
-  </Box>
-
-  {/* Find Helpers button */}
-  {hasHelpers && (
-    <Button
-      variant="contained"
-      size="small"
-      disabled={isHelperLoading}
-      onClick={(e) => {
-        e.stopPropagation();
-        handleOpenHelpers(result);
-      }}
-      sx={{
-        backgroundColor: '#3E2723',
-        color: 'white',
-
-        minWidth: 0,
-        width: 'auto',
-
-        maxWidth: 125,
-
-        textTransform: 'none',
-        fontWeight: 600,
-        fontSize: '11px',
-
-        borderRadius: '20px',
-
-        px: 1.25,
-        py: 0.7,
-
-        whiteSpace: 'nowrap',
-        flexShrink: 1,
-
-        '&:hover': {
-          backgroundColor: '#5D4037',
-        },
-
-        '&.Mui-disabled': {
-          backgroundColor: '#5D4037',
-          color: 'white',
-          opacity: 1,
-        },
-      }}
-    >
-      Tap to see Helpers
-    </Button>
-  )}
-</Box>
-
-                    {/* Find Helpers button
-                        ONLY shown if helpers exist */}
-
-                  
-
-                    {/* Spacer */}
-
-                    {/* <Box
-                      sx={{
-                        width: 20,
-                      }}
-                    /> */}
-                  </Box>
+                    Based on your request:
+                    <strong> "{searchText}"</strong>
+                  </Typography>
                 </Box>
-              );
-            })}
-          </Box>
-        )}
+
+                <Chip
+                  label={`${searchResult.length} recommendations`}
+                  size="small"
+                  sx={{
+                    backgroundColor: "#e8f3f5",
+                    color: "#0f4c5c",
+                    fontWeight: 600,
+                  }}
+                />
+              </Box>
+            )}
+
+          {/* =================================================
+              RESULT CARDS
+              ================================================= */}
+
+          {!loading &&
+            searchResult.length > 0 && (
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: {
+                    xs: "1fr",
+                    sm: "repeat(2, 1fr)",
+                    md: "repeat(3, 1fr)",
+                  },
+                  gap: 2,
+                }}
+              >
+                {searchResult.map(
+                  (result, index) => {
+                    const helperList =
+                      helpers[result] || [];
+
+                    const hasHelpers =
+                      helperList.length > 0;
+
+                    const isHelperLoading =
+                      helperLoading === result;
+
+                    return (
+                      <Paper
+                        key={`${result}-${index}`}
+                        elevation={0}
+                        sx={{
+                          position: "relative",
+                          overflow: "hidden",
+                          minHeight: 190,
+                          borderRadius: "18px",
+                          border: "1px solid",
+                          borderColor:
+                            "rgba(15,76,92,0.13)",
+                          backgroundColor: "white",
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent:
+                            "space-between",
+                          p: 2.2,
+
+                          transition:
+                            "transform 0.2s ease, box-shadow 0.2s ease",
+
+                          "&:hover": {
+                            transform:
+                              "translateY(-4px)",
+                            boxShadow:
+                              "0 12px 30px rgba(20,60,75,0.11)",
+                            borderColor:
+                              "rgba(15,76,92,0.25)",
+                          },
+                        }}
+                      >
+                        {/* Top */}
+                        <Box>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent:
+                                "space-between",
+                              mb: 2,
+                            }}
+                          >
+                            <Avatar
+                              sx={{
+                                width: 42,
+                                height: 42,
+                                borderRadius:
+                                  "12px",
+                                backgroundColor:
+                                  "#e8f3f5",
+                                color:
+                                  "#0f4c5c",
+                              }}
+                            >
+                              <VolunteerActivismOutlinedIcon />
+                            </Avatar>
+
+                            <Chip
+                              size="small"
+                              label={
+                                hasHelpers
+                                  ? `${helperList.length} ${
+                                      helperList.length ===
+                                      1
+                                        ? "helper"
+                                        : "helpers"
+                                    }`
+                                  : "No helpers yet"
+                              }
+                              sx={{
+                                fontSize:
+                                  "0.72rem",
+                                fontWeight: 600,
+                                backgroundColor:
+                                  hasHelpers
+                                    ? "#edf7ef"
+                                    : "#f3f4f5",
+                                color:
+                                  hasHelpers
+                                    ? "#2e6b3b"
+                                    : "#777",
+                              }}
+                            />
+                          </Box>
+
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              fontWeight: 650,
+                              color: "#1c3842",
+                              fontSize:
+                                "1.02rem",
+                              lineHeight: 1.4,
+                              textTransform:
+                                "capitalize",
+                            }}
+                          >
+                            {result}
+                          </Typography>
+
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{
+                              mt: 0.7,
+                              lineHeight: 1.5,
+                            }}
+                          >
+                            Community members who
+                            may be able to help with
+                            this.
+                          </Typography>
+                        </Box>
+
+                        {/* Bottom */}
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent:
+                              "space-between",
+                            gap: 1,
+                            mt: 2,
+                          }}
+                        >
+                          {/* Feedback */}
+                          <Box
+                            sx={{
+                              display: "flex",
+                              gap: 0.25,
+                            }}
+                          >
+                            <IconButton
+                              size="small"
+                              aria-label="like recommendation"
+                              onClick={() =>
+                                handleLike(result)
+                              }
+                              sx={{
+                                width: 34,
+                                height: 34,
+                                color: liked[result]
+                                  ? "#2e7d32"
+                                  : "#829197",
+                                backgroundColor:
+                                  liked[result]
+                                    ? "#edf7ef"
+                                    : "transparent",
+
+                                "&:hover": {
+                                  backgroundColor:
+                                    "#edf7ef",
+                                  color:
+                                    "#2e7d32",
+                                },
+                              }}
+                            >
+                              {liked[result] ? (
+                                <ThumbUpIcon
+                                  sx={{
+                                    fontSize: 18,
+                                  }}
+                                />
+                              ) : (
+                                <ThumbUpOutlinedIcon
+                                  sx={{
+                                    fontSize: 18,
+                                  }}
+                                />
+                              )}
+                            </IconButton>
+
+                            <IconButton
+                              size="small"
+                              aria-label="dislike recommendation"
+                              onClick={() =>
+                                handleDislike(result)
+                              }
+                              sx={{
+                                width: 34,
+                                height: 34,
+                                color: dislike[result]
+                                  ? "#c62828"
+                                  : "#829197",
+                                backgroundColor:
+                                  dislike[result]
+                                    ? "#fff1f1"
+                                    : "transparent",
+
+                                "&:hover": {
+                                  backgroundColor:
+                                    "#fff1f1",
+                                  color:
+                                    "#c62828",
+                                },
+                              }}
+                            >
+                              {dislike[result] ? (
+                                <ThumbDownIcon
+                                  sx={{
+                                    fontSize: 18,
+                                  }}
+                                />
+                              ) : (
+                                <ThumbDownOutlinedIcon
+                                  sx={{
+                                    fontSize: 18,
+                                  }}
+                                />
+                              )}
+                            </IconButton>
+                          </Box>
+
+                          {/* Helpers */}
+                          {hasHelpers && (
+                            <Button
+                              variant="contained"
+                              size="small"
+                              disabled={
+                                isHelperLoading
+                              }
+                              onClick={() =>
+                                handleOpenHelpers(
+                                  result
+                                )
+                              }
+                              endIcon={
+                                isHelperLoading ? (
+                                  <CircularProgress
+                                    size={14}
+                                    sx={{
+                                      color:
+                                        "white",
+                                    }}
+                                  />
+                                ) : (
+                                  <ArrowForwardIcon
+                                    sx={{
+                                      fontSize:
+                                        16,
+                                    }}
+                                  />
+                                )
+                              }
+                              sx={{
+                                borderRadius:
+                                  "10px",
+                                backgroundColor:
+                                  "#0f4c5c",
+                                textTransform:
+                                  "none",
+                                fontWeight: 600,
+                                fontSize:
+                                  "0.78rem",
+                                px: 1.4,
+                                py: 0.8,
+
+                                "&:hover": {
+                                  backgroundColor:
+                                    "#0b3c49",
+                                },
+                              }}
+                            >
+                              Find Helpers
+                            </Button>
+                          )}
+                        </Box>
+                      </Paper>
+                    );
+                  }
+                )}
+              </Box>
+            )}
+        </Box>
       </Box>
 
       {/* =====================================================
@@ -768,147 +1185,259 @@ setLiked(prev => ({
         onClose={handleCloseHelpers}
         fullWidth
         maxWidth="sm"
+        slotProps={{
+          paper:{
+          sx: {
+            borderRadius: "20px",
+            overflow: "hidden",
+          },
+        }
+        }}
       >
-        {/* Modal title */}
-
         <DialogTitle
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            fontWeight: 600,
+            p: 2.5,
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
           }}
         >
-          <span>
-            {selectedRecommendation}
-          </span>
+          <Box>
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 700,
+                color: "#173b46",
+              }}
+            >
+              People who may help
+            </Typography>
+
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ mt: 0.5 }}
+            >
+              {selectedRecommendation}
+            </Typography>
+          </Box>
 
           <IconButton
             onClick={handleCloseHelpers}
             aria-label="close"
             size="small"
+            sx={{
+              backgroundColor: "#f3f6f7",
+
+              "&:hover": {
+                backgroundColor: "#e8edef",
+              },
+            }}
           >
-            <CloseIcon />
+            <CloseIcon fontSize="small" />
           </IconButton>
         </DialogTitle>
 
         <Divider />
 
-        {/* Modal content */}
-
         <DialogContent
           sx={{
-            py: 2,
+            p: 2.5,
+            backgroundColor: "#f8fafb",
           }}
         >
           {selectedHelpers.length === 0 ? (
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{
-                textAlign: 'center',
-                py: 4,
-              }}
-            >
-              No helpers available.
-            </Typography>
-          ) : (
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 2,
+                py: 5,
+                textAlign: "center",
               }}
             >
+              <PeopleIcon
+                sx={{
+                  fontSize: 45,
+                  color: "text.disabled",
+                  mb: 1,
+                }}
+              />
+
+              <Typography
+                variant="body1"
+                sx={{ fontWeight: 600 }}
+              >
+                No helpers available right now
+              </Typography>
+
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ mt: 0.5 }}
+              >
+                Try another request or check back
+                later.
+              </Typography>
+            </Box>
+          ) : (
+            <Stack spacing={1.5}>
               {selectedHelpers.map(
                 (helper, index) => (
-                  <Box
-                    key={helper.user_id}
+                  <Paper
+                    key={helper.user_id || index}
+                    elevation={0}
                     sx={{
-                      border: '1px solid',
-                      borderColor: 'divider',
-                      borderRadius: 3,
                       p: 2,
-
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: 0.8,
-
-                      backgroundColor:
-                        'background.paper',
-
-                      transition:
-                        'all 0.2s ease',
-
-                      '&:hover': {
-                        boxShadow:
-                          '0 4px 12px rgba(0,0,0,0.12)',
-                      },
+                      borderRadius: "15px",
+                      border: "1px solid",
+                      borderColor:
+                        "rgba(15,76,92,0.12)",
+                      backgroundColor: "white",
                     }}
                   >
-                    {/* Helper name */}
-
-                    <Typography
-                      variant="h6"
+                    <Box
                       sx={{
-                        fontWeight: 600,
+                        display: "flex",
+                        gap: 1.5,
+                        alignItems: "flex-start",
                       }}
                     >
-                      {helper.name}
-                    </Typography>
+                      <Avatar
+                        sx={{
+                          width: 46,
+                          height: 46,
+                          backgroundColor:
+                            "#e8f3f5",
+                          color: "#0f4c5c",
+                          fontWeight: 700,
+                        }}
+                      >
+                        {helper.name
+                          ?.charAt(0)
+                          ?.toUpperCase() || "H"}
+                      </Avatar>
 
-                    {/* Helper status */}
+                      <Box sx={{ flex: 1 }}>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent:
+                              "space-between",
+                            gap: 1,
+                          }}
+                        >
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              fontWeight: 700,
+                            }}
+                          >
+                            {helper.name}
+                          </Typography>
 
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: 'success.main',
-                        fontWeight: 500,
-                      }}
-                    >
-                      ● Available Helper
-                    </Typography>
+                          <Chip
+                            label="Available"
+                            size="small"
+                            sx={{
+                              height: 24,
+                              fontSize:
+                                "0.68rem",
+                              fontWeight: 600,
+                              backgroundColor:
+                                "#edf7ef",
+                              color: "#2e7d32",
+                            }}
+                          />
+                        </Box>
 
-                    {/* Phone */}
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{
+                            mt: 0.8,
+                            display: "flex",
+                            alignItems:
+                              "center",
+                            gap: 0.5,
+                          }}
+                        >
+                          <LocationOnOutlinedIcon
+                            sx={{
+                              fontSize: 16,
+                            }}
+                          />
 
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                    >
-                      📞 {helper.phone}
-                    </Typography>
+                          {helper.latitude},{" "}
+                          {helper.longitude}
+                        </Typography>
 
-                    {/* Location */}
+                        {helper.phone && (
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{ mt: 0.4 }}
+                          >
+                            📞 {helper.phone}
+                          </Typography>
+                        )}
 
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                    >
-                      📍 {helper.latitude},{' '}
-                      {helper.longitude}
-                    </Typography>
-                              <Box>
-                    {helper.original_help.map((o: string) => (
-                      <Typography key={o}>
-                        {o}
-                      </Typography>
-                    ))}
-                  </Box>
-
-                  </Box>
+                        {Array.isArray(
+                          helper.original_help
+                        ) &&
+                          helper.original_help
+                            .length > 0 && (
+                            <Box
+                              sx={{
+                                mt: 1.2,
+                                display: "flex",
+                                flexWrap:
+                                  "wrap",
+                                gap: 0.6,
+                              }}
+                            >
+                              {helper.original_help.map(
+                                (
+                                  item: string,
+                                  helpIndex: number
+                                ) => (
+                                  <Chip
+                                    key={`${item}-${helpIndex}`}
+                                    label={item}
+                                    size="small"
+                                    variant="outlined"
+                                    sx={{
+                                      borderRadius:
+                                        "7px",
+                                      fontSize:
+                                        "0.7rem",
+                                    }}
+                                  />
+                                )
+                              )}
+                            </Box>
+                          )}
+                      </Box>
+                    </Box>
+                  </Paper>
                 )
               )}
-            </Box>
+            </Stack>
           )}
         </DialogContent>
 
-        {/* Modal footer */}
-
-        <DialogActions>
+        <DialogActions
+          sx={{
+            p: 2,
+            backgroundColor: "white",
+          }}
+        >
           <Button
             onClick={handleCloseHelpers}
             sx={{
-              textTransform: 'none',
+              textTransform: "none",
+              borderRadius: "10px",
+              px: 2,
+              color: "#0f4c5c",
+              fontWeight: 600,
             }}
           >
             Close
@@ -918,4 +1447,3 @@ setLiked(prev => ({
     </>
   );
 }
-

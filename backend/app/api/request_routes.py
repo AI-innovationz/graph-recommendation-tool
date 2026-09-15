@@ -13,7 +13,7 @@ from app.models.feedback import FeedbackItem,FeedbackObj
 from app.models.match import Match
 # Initialize repositories globally or within the function scope
 req_repo = RequestRepository()
-user_repo = UserRepository()
+
 
 def create_req_router(graph,vi) -> APIRouter:
     # 1. Initialize the router inside the factory function scope
@@ -69,16 +69,19 @@ def create_req_router(graph,vi) -> APIRouter:
 
     @router.post("/match")
     def match_request(request:Match):
-        print(request.request)
+        print(request.request,"REQUEST IN MATCH----")
+        user_repo = UserRepository()
         matchingService = MatchingService(user_repo)
         print(matchingService)
-
+     
         helper = matchingService.find_best_helper(request.request)
+        print(helper,"helper---")
+        
         for h in helper:
-            original_help = matchingService.find_best_helper(h)
+            original_help = matchingService.fetch_original_help_query(h['properties'].name)
             h.original_help = original_help
 
-        # print(helper,original_help,"helper data--") 
+        print(helper,original_help,"helper data--") 
         if helper is None:
             return {
                 "msg": "No helper found"
@@ -93,7 +96,7 @@ def create_req_router(graph,vi) -> APIRouter:
         # --- You can use the graph here cleanly if needed ---
         # Example: related_nodes = graph.find_neighbors(req.request_type)
         # print(f"Graph safely accessed inside recommendations: {graph}")
-
+        user_repo = UserRepository()
         recommendations = Recommendations(user_repo,graph,vi)
         related_concepts,final_cache = recommendations.get_related_concepts(req)
         

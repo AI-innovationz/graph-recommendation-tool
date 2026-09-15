@@ -8,6 +8,7 @@ import { Routes, Route } from 'react-router-dom';
 import Search from './Search/App';
 import RegisterDrawer from './RegisterDrawer.tsx/App';
 import RegistrationSuccessful from './Registration_Successful/App';
+import Help from './Help.tsx/App'
 function Home() {
   
   return (
@@ -64,7 +65,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Search" element={<Search />} />
-        <Route path="/Help" element={<></>}/>
+        <Route path="/Help" element={<Help/>}/>
         <Route path="/registration_successful" element={<RegistrationSuccessful/>} />
       </Routes>
               </Box>

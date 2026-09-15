@@ -25,7 +25,7 @@ class DataFetch:
                 database_="913033d2"
                 )       
         self.driver.close()
-
+        print(summary,"summar----")
         for record in records:
             # print(record["source"],record["target"],record["relation"],record["weight"])
             self.kg.add_edge(record["source"],record["target"],record["relation"],record["weight"],record["node_embedding"])

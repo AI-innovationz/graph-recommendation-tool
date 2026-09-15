@@ -4,6 +4,8 @@ from neo4j import GraphDatabase
 # from app.knowledge.graph import knowledgeGraph
 from app.utils.parseRequest import parse_request
 from app.nlp.embedding_service import EmbeddingService
+from app.knowledge.vector_index import VectorIndex
+
 URI = "neo4j+ssc://913033d2.databases.neo4j.io"
 AUTH = (
     "913033d2",
@@ -92,17 +94,22 @@ class UserRepository:
         location=Location(node["latitude"],node["longitude"])
     )
 
-    def update_user(self,user:User,graph):
+    def update_user(self,user:User,graph,vi):
         em = EmbeddingService()
         print(user,"user---------")
         print(user.preferences,"pref----")
         preferences = parse_request([],user.preferences)
         final_pref = preferences[:]
         for p in preferences:
-            for source,neighbours in graph.graph.items():
-                # print(source)
-                if em.similarity(str(p),source)>=0.9:
-                    final_pref.append(source)
+            # print(graph.graph,"graph----")
+            tmp = list(vi.search(p,k=5))
+            for score,src in tmp:
+                final_pref.append(src)
+            # # for source,neighbours in graph.graph.items():
+            # #     print(source)
+            # #     if em.similarity(str(p),source)>=0.9:
+            #         final_pref.append(source)
+        
         print(final_pref,"final_pref- array--")     
         try:
             records, summary,keys=self.driver.execute_query(self.update_query,user_id=user.id,name=user.name,preferences = final_pref,database_="913033d2")
