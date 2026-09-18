@@ -27,7 +27,7 @@ df = DataFetch()
 em = EmbeddingService()
 vi_instance = VectorIndex(em)
 graph_instance = df.fetch_data()
-vi_instance.load_from_azure('','','')
+vi_instance.load_from_azure("DefaultEndpointsProtocol=https;AccountName=vectorstorage112233;AccountKey=Z+rnpTn1WueH70KbqlpYdatO/MLPD1ocWbHmbTzHCjPdCRPG1KGhYdI9L6Ch+eP6o4g44CPTYhjo+AStzS18Iw==;EndpointSuffix=core.windows.net","community-helper-index","community-helper")
 
 # 2. Initialize routers via factory functions, passing the live graph reference
 user_router = create_user_router(graph_instance,vi_instance)
