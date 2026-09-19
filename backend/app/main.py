@@ -21,14 +21,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+print("before fetching data")
 # 1. Fetch the graph data once on application startup
 df = DataFetch()
-em = EmbeddingService()
-vi_instance = VectorIndex(em)
+print("after fetching data")
+vi_instance = VectorIndex()
 graph_instance = df.fetch_data()
+print("after fetching data-------2")
 vi_instance.load_from_azure("DefaultEndpointsProtocol=https;AccountName=vectorstorage112233;AccountKey=Z+rnpTn1WueH70KbqlpYdatO/MLPD1ocWbHmbTzHCjPdCRPG1KGhYdI9L6Ch+eP6o4g44CPTYhjo+AStzS18Iw==;EndpointSuffix=core.windows.net","community-helper-index","community-helper")
-
+print("after fetching data--------3")
 # 2. Initialize routers via factory functions, passing the live graph reference
 user_router = create_user_router(graph_instance,vi_instance)
 req_router = create_req_router(graph_instance,vi_instance)
