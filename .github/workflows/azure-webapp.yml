@@ -31,14 +31,22 @@ jobs:
         working-directory: backend
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt --target .python_packages/lib/site-packages
+
+          python -m pip install \
+            -r requirements.txt \
+            --target .python_packages/lib/site-packages
 
           echo "Checking packaged dependencies..."
+
           test -f .python_packages/lib/site-packages/uvicorn/__init__.py
+          test -f .python_packages/lib/site-packages/fastapi/__init__.py
           test -f .python_packages/lib/site-packages/gunicorn/__init__.py
 
           echo "Uvicorn package found:"
           ls -la .python_packages/lib/site-packages/uvicorn | head
+
+          echo "FastAPI package found:"
+          ls -la .python_packages/lib/site-packages/fastapi | head
 
           echo "Gunicorn package found:"
           ls -la .python_packages/lib/site-packages/gunicorn | head
@@ -46,9 +54,11 @@ jobs:
       - name: Verify packaged dependencies
         working-directory: backend
         run: |
-          PYTHONPATH="$PWD/.python_packages/lib/site-packages" python -c "import uvicorn; print('Uvicorn:', uvicorn.__version__)"
-          PYTHONPATH="$PWD/.python_packages/lib/site-packages" python -c "import fastapi; print('FastAPI:', fastapi.__version__)"
-          PYTHONPATH="$PWD/.python_packages/lib/site-packages" python -c "import gunicorn; print('Gunicorn:', gunicorn.__version__)"
+          export PYTHONPATH="$PWD/.python_packages/lib/site-packages"
+
+          python -c "import uvicorn; print('Uvicorn:', uvicorn.__version__)"
+          python -c "import fastapi; print('FastAPI:', fastapi.__version__)"
+          python -c "import gunicorn; print('Gunicorn:', gunicorn.__version__)"
 
       - name: Login to Azure
         uses: azure/login@v3
@@ -71,7 +81,7 @@ jobs:
             az webapp config set \
               --resource-group "${{ env.AZURE_RESOURCE_GROUP }}" \
               --name "${{ env.AZURE_WEBAPP_NAME }}" \
-              --startup-file "gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app"
+              --startup-file "python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"
 
       - name: Deploy backend
         uses: azure/webapps-deploy@v3
