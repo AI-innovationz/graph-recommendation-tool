@@ -340,15 +340,7 @@ export default function Search() {
           }
         );
 
-        await axios.post(
-          "https://community-helper-api-poushali-fse2fddpgqf8hfa4.westus3-01.azurewebsites.net/api/v1/requests/feedback",
-          { feedbackBody }
-        );
-
-        /*
-         * Recommendations
-         */
-        const recommendations = Array.isArray(
+               const recommendations = Array.isArray(
           searchRes.data?.[0]
         )
           ? searchRes.data[0]
@@ -411,6 +403,15 @@ export default function Search() {
         );
 
         setHelpers(helperResults);
+        await axios.post(
+          "https://community-helper-api-poushali-fse2fddpgqf8hfa4.westus3-01.azurewebsites.net/api/v1/requests/feedback",
+          { feedbackBody }
+        );
+
+        /*
+         * Recommendations
+         */
+ 
         setLiked(likeRes);
         setDisliked(dislikeRes);
       } catch (error) {
