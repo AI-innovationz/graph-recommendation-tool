@@ -79,7 +79,7 @@ def create_req_router(graph,vi) -> APIRouter:
         
         for h in helper:
             original_help = matchingService.fetch_original_help_query(h['properties'].name)
-            h.original_help = original_help
+            h['properties'].original_help = original_help
 
         print(helper,original_help,"helper data--") 
         if helper is None:
