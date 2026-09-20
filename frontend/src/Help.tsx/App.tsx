@@ -71,7 +71,7 @@ export default function Help() {
       );
 
       const res = await axios.patch(
-        `http://localhost:8000/api/v1/users/${userObj.user_id}/become-helper`,
+        `https://community-helper-api-poushali-fse2fddpgqf8hfa4.westus3-01.azurewebsites.net/api/v1/users/${userObj.user_id}/become-helper`,
         { preferences: text },
         {
           headers: {

@@ -86,7 +86,7 @@ function RegisterDrawer({ open, onClose }: RegisterDrawerProps) {
       }
 
       const userRes = await axios.post(
-        'http://localhost:8000/api/v1/users',
+        'https://community-helper-api-poushali-fse2fddpgqf8hfa4.westus3-01.azurewebsites.net/api/v1/users',
         {
           name: formData.name,
           phone: formData.phone,

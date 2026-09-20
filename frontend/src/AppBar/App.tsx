@@ -29,7 +29,7 @@ export default function ButtonAppBar({ onRegister }: ButtonAppBarProps) {
     if (localStorage.getItem('user')) {
       const userObj = JSON.parse(localStorage.getItem('user') ?? '{}')
       try {
-        const userData = await axios.get(`http://localhost:8000/api/v1/users/${userObj.user_id}`)
+        const userData = await axios.get(`https://community-helper-api-poushali-fse2fddpgqf8hfa4.westus3-01.azurewebsites.net/api/v1/users/${userObj.user_id}`)
         if (userData.status === 200) {
           const name = userData.data.name || ''
           setFirstName(name.split(' ')[0] || '') // Added fixed index [0]
