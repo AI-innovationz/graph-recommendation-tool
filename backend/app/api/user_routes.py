@@ -74,7 +74,7 @@ def create_user_router(graph,vi) -> APIRouter:
         # print(f"Graph successfully accessed inside become_helper: {graph}")
         
         print(user, "user in api")
-        pref_list = user_repo.update_user(user,graph,vi)
+        pref_list = user_repo.update_user(user,vi)
         pref_list[0] = list(set(pref_list[0]))
 
         return {

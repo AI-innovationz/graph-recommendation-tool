@@ -2,14 +2,15 @@ from collections import deque
 import heapq
 import math
 import time
-from app.nlp.embedding_service import EmbeddingService
+# from app.nlp.embedding_service import EmbeddingService
 from app.knowledge.config import K, a
-from app.knowledge.vector_index import VectorIndex
+# from app.knowledge.vector_index import VectorIndex
 
-em = EmbeddingService()
+# em = EmbeddingService()
 
 
 def bfs(graph, start_items,vi):
+    em = vi.em
     total_start = time.perf_counter()
     semantic_cache = {}
     queue = []

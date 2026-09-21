@@ -1,5 +1,5 @@
 from neo4j import GraphDatabase
-from app.nlp.embedding_service import EmbeddingService
+# from app.nlp.embedding_service import EmbeddingService
 from app.knowledge.graph import knowledgeGraph
 
 class DataFetch:

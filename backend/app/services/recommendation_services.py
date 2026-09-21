@@ -1,6 +1,6 @@
 
     
-from app.knowledge.data_fetch import DataFetch
+# from app.knowledge.data_fetch import DataFetch
 from app.knowledge.bfs import bfs
 from app.api.user_routes import UserRepository
 from app.models.request import Request

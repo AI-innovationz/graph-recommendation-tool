@@ -10,9 +10,9 @@ AUTH = (
 
 class GraphBuilder:
 
-    def __init__(self):
+    def __init__(self,vi):
 
-        self.embedding = EmbeddingService()
+        self.embedding = vi.em
 
         self.driver = GraphDatabase.driver(
             URI,

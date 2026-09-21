@@ -3,8 +3,8 @@ from app.models.location import Location
 from neo4j import GraphDatabase
 # from app.knowledge.graph import knowledgeGraph
 from app.utils.parseRequest import parse_request
-from app.nlp.embedding_service import EmbeddingService
-from app.knowledge.vector_index import VectorIndex
+# from app.nlp.embedding_service import EmbeddingService
+# from app.knowledge.vector_index import VectorIndex
 
 URI = "neo4j+ssc://913033d2.databases.neo4j.io"
 AUTH = (
@@ -94,8 +94,8 @@ class UserRepository:
         location=Location(node["latitude"],node["longitude"])
     )
 
-    def update_user(self,user:User,graph,vi):
-        em = EmbeddingService()
+    def update_user(self,user:User,vi):
+        # em = EmbeddingService()
         print(user,"user---------")
         print(user.preferences,"pref----")
         preferences = parse_request([],user.preferences)

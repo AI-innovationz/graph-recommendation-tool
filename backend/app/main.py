@@ -6,7 +6,7 @@ from app.api.user_routes import create_user_router
 from app.api.request_routes import create_req_router
 from app.knowledge.data_fetch import DataFetch
 from app.knowledge.vector_index import VectorIndex
-from app.nlp.embedding_service import EmbeddingService
+
 
 # Initialize your FastAPI Application
 app = FastAPI(

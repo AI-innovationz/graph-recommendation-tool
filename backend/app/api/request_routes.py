@@ -125,7 +125,7 @@ def create_req_router(graph,vi) -> APIRouter:
             updated_list.append({"source":rec.start, "relationship":"related to","target":rec.final_node,"confidence":fin_score,"context":rec.start+" "+"related to "+ rec.final_node})
             
         # 2. Run the database transaction AFTER the loop completes
-        gb = GraphBuilder()
+        gb = GraphBuilder(vi)
         try:
             gb.build_graph(updated_list)
             return {"Updated": True}
