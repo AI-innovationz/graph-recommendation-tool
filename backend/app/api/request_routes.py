@@ -70,23 +70,32 @@ def create_req_router(graph,vi) -> APIRouter:
     @router.post("/match")
     def match_request(request:Match):
         print(request.request,"REQUEST IN MATCH----")
+        req_repo = RequestRepository()
         user_repo = UserRepository()
         matchingService = MatchingService(user_repo)
         print(matchingService)
      
         helper = matchingService.find_best_helper(request.request)
-        print(helper,"helper---")
-        
+        # print(helper,"helper---")
+        final_list = []
         for h in helper:
-            original_help = matchingService.fetch_original_help_query(h['properties'].name)
-            h['properties'].original_help = original_help
-
-        print(helper,original_help,"helper data--") 
+            original_help = matchingService.find_original_helps(h["u"]["name"])
+            tmp=[]
+            
+            properties= dict(h["u"])
+            tmp.append(properties)
+            print(tmp,"tmp----->")
+            tmp.append({"original_help":original_help[0]["original_preferences"]})
+            print(original_help,"original help printed---")
+            # print(h,"h printed-----")
+            final_list.append(tmp)
+        print(final_list,"final")
+        # print(helper,original_help,"helper data--") 
         if helper is None:
             return {
                 "msg": "No helper found"
             }
-        return helper
+        return final_list
 
     @router.post("/{request_id}/recommendations")
     def get_recommendations(request_id):

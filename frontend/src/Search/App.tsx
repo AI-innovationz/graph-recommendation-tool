@@ -377,7 +377,10 @@ export default function Search() {
                 const helperList: Helper[] =
                   Array.isArray(helperResponse.data)
                     ? helperResponse.data
-                        .map((item: any) => item?.[0])
+                         .map((item: any) => ({
+                          ...item?.[0],
+                          ...item?.[1],
+                        }))
                         .filter(
                           (
                             helper: any
