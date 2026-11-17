@@ -167,7 +167,7 @@ export default function Search() {
       });
 
       await axios.post(
-        "https://community-helper-api-poushali-fse2fddpgqf8hfa4.westus3-01.azurewebsites.net/api/v1/requests/feedback",
+        "http://localhost:8000/api/v1/requests/feedback",
         { feedbackBody }
       );
     } catch (error) {
@@ -274,7 +274,7 @@ export default function Search() {
          */
         console.log(searchText,"new search text--")
         const response = await axios.post(
-          "https://community-helper-api-poushali-fse2fddpgqf8hfa4.westus3-01.azurewebsites.net/api/v1/requests",
+          "http://localhost:8000/api/v1/requests",
           {
             user_id: "",
             request_type: [],
@@ -304,7 +304,7 @@ export default function Search() {
          * Get recommendations
          */
         const searchRes = await axios.post(
-          `https://community-helper-api-poushali-fse2fddpgqf8hfa4.westus3-01.azurewebsites.net/api/v1/requests/${reqID}/recommendations`
+          `http://localhost:8000/api/v1/requests/${reqID}/recommendations`
         );
 
         if (searchRes.status !== 200) {
@@ -365,7 +365,7 @@ export default function Search() {
             async (rec: string) => {
               try {
                 const helperResponse = await axios.post(
-                  "https://community-helper-api-poushali-fse2fddpgqf8hfa4.westus3-01.azurewebsites.net/api/v1/requests/match",
+                  "http://localhost:8000/api/v1/requests/match",
                   {
                     request: rec,
                   }
@@ -406,8 +406,9 @@ export default function Search() {
         );
 
         setHelpers(helperResults);
+        setLoading(false)
         await axios.post(
-          "https://community-helper-api-poushali-fse2fddpgqf8hfa4.westus3-01.azurewebsites.net/api/v1/requests/feedback",
+          "http://localhost:8000/api/v1/requests/feedback",
           { feedbackBody }
         );
 
@@ -433,6 +434,7 @@ export default function Search() {
    * ---------------------------------------------------------
    */
 
+  
   const selectedHelpers = selectedRecommendation
     ? helpers[selectedRecommendation] || []
     : [];

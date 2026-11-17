@@ -1,13 +1,15 @@
 import json
+import os
+
 import faiss
 import numpy as np
-from app.nlp.embedding_service import EmbeddingService
-from azure.storage.blob import BlobServiceClient
 
+from app.nlp.embedding_service import EmbeddingService
+
+from pathlib import Path
 class VectorIndex:
 
     def __init__(self, embedding_service=None):
-        # ◄ FIXED: Use the passed instance if provided, otherwise default to a new one
         self.em = embedding_service if embedding_service else EmbeddingService()
         self.index = None
         self.nodes = []
@@ -30,12 +32,16 @@ class VectorIndex:
 
         dimension = embeddings.shape[1]
 
+        # Inner Product on normalized vectors = cosine similarity
         self.index = faiss.IndexFlatIP(dimension)
         self.index.add(embeddings)
 
     def search(self, text, k=30):
-        if not self.index:
-            raise ValueError("No index loaded in memory. Run build() or load_from_azure() first.")
+        if self.index is None:
+            raise ValueError(
+                "No index loaded in memory. "
+                "Run build() or load_local() first."
+            )
 
         embedding = self.em.encode(text)
 
@@ -44,6 +50,7 @@ class VectorIndex:
             dtype="float32"
         )
 
+        # Normalize query vector for cosine similarity
         faiss.normalize_L2(embedding)
 
         scores, indices = self.index.search(
@@ -54,67 +61,91 @@ class VectorIndex:
         results = []
 
         for score, index in zip(scores[0], indices[0]):
-            # FAISS returns -1 if there aren't enough close vectors to satisfy 'k'
+            # FAISS returns -1 if there aren't enough results
             if index == -1:
                 continue
 
             node = self.nodes[index]
+
             results.append(
                 (float(score), node)
             )
 
         return results
 
-    def save_to_azure(self, connection_string, container_name, index_id):
-        """Serializes and uploads both the FAISS index and metadata to Azure Blob Storage."""
+    def save_local(self, directory="vector_store", index_id="community_helper"):
+        """
+        Saves the FAISS index and node metadata to the local filesystem.
+        """
+
         if self.index is None:
             raise ValueError("No index built to save.")
 
-        # 1. Serialize FAISS Index to a byte stream
-        chunk = faiss.serialize_index(self.index)
-        index_bytes = chunk.tobytes()
+        os.makedirs(directory, exist_ok=True)
 
-        # 2. Serialize Nodes mapping list to a JSON string
-        nodes_json = json.dumps(self.nodes)
-
-        # 3. Connect and upload to Azure Blob Storage
-        blob_service_client = BlobServiceClient.from_connection_string(connection_string)
-        
-        # Upload FAISS binary blob
-        faiss_blob_client = blob_service_client.get_blob_client(
-            container=container_name, 
-            blob=f"{index_id}.faiss"
+        # Save FAISS index
+        index_path = os.path.join(
+            directory,
+            f"{index_id}.faiss"
         )
-        faiss_blob_client.upload_blob(index_bytes, overwrite=True)
 
-        # Upload Metadata string blob
-        meta_blob_client = blob_service_client.get_blob_client(
-            container=container_name, 
-            blob=f"{index_id}_meta.json"
+        faiss.write_index(
+            self.index,
+            index_path
         )
-        meta_blob_client.upload_blob(nodes_json, overwrite=True)
-        print(f"Successfully uploaded vector index '{index_id}' to Azure Blob.")
 
-    def load_from_azure(self, connection_string, container_name, index_id):
-        """Downloads and reconstructs the FAISS index and node mapping from Azure."""
-        blob_service_client = BlobServiceClient.from_connection_string(connection_string)
-
-        # 1. Download FAISS binary blob
-        faiss_blob_client = blob_service_client.get_blob_client(
-            container=container_name, 
-            blob=f"{index_id}.faiss"
+        # Save node mapping
+        metadata_path = os.path.join(
+            directory,
+            f"{index_id}_meta.json"
         )
-        index_bytes = faiss_blob_client.download_blob().readall()
-        
-        # Reconstruct FAISS Object
-        chunk = np.frombuffer(index_bytes, dtype='uint8')
-        self.index = faiss.deserialize_index(chunk)
 
-        # 2. Download Metadata JSON blob
-        meta_blob_client = blob_service_client.get_blob_client(
-            container=container_name, 
-            blob=f"{index_id}_meta.json"
+        with open(metadata_path, "w", encoding="utf-8") as f:
+            json.dump(self.nodes, f)
+
+        print(
+            f"Successfully saved vector index '{index_id}' "
+            f"to local storage."
         )
-        nodes_json = meta_blob_client.download_blob().readall().decode('utf-8')
-        self.nodes = json.loads(nodes_json)
-        print(f"Successfully loaded vector index '{index_id}' from Azure into memory.")
+
+    def load_local(
+        self,
+        directory=str(Path(__file__).resolve().parents[4] / 'Vector_Index' / 'vector_store'),
+        index_id="community_helper"
+    ):
+        """
+        Loads the FAISS index and node metadata
+        from the local filesystem.
+        """
+
+        index_path = os.path.join(
+            directory,
+            f"{index_id}.faiss"
+        )
+        print(index_path,"path-----")
+        metadata_path = os.path.join(
+            directory,
+            f"{index_id}_meta.json"
+        )
+
+        if not os.path.exists(index_path):
+            raise FileNotFoundError(
+                f"FAISS index not found: {index_path}"
+            )
+
+        if not os.path.exists(metadata_path):
+            raise FileNotFoundError(
+                f"Metadata file not found: {metadata_path}"
+            )
+
+        # Load FAISS index
+        self.index = faiss.read_index(index_path)
+
+        # Load node mapping
+        with open(metadata_path, "r", encoding="utf-8") as f:
+            self.nodes = json.load(f)
+
+        print(
+            f"Successfully loaded vector index '{index_id}' "
+            f"from local storage."
+        )
